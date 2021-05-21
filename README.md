@@ -29,7 +29,7 @@ live preview all your changes while you work on them.
 
 * [<img src="https://img.shields.io/badge/-Svelte-FD5602?style=for-the-badge&labelColor=black&logo=svelte&logoColor=FD5602">](https://svelte.dev/)
 
-* [<img="https://img.shields.io/badge/-SCSS-cc6699?style=for-the-badge&labelColor=black&logo=sass&logoColor=cc6699">](https://sass-lang.com/)
+* [<img src="https://img.shields.io/badge/-SCSS-cc6699?style=for-the-badge&labelColor=black&logo=sass&logoColor=cc6699">](https://sass-lang.com/)
 
 * [<img src="https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A">](https://nodejs.org/en/)
 
