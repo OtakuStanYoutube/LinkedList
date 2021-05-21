@@ -1,4 +1,4 @@
-# Contributing to DogeHouse
+# Contributing to Linked List
 > Please read the [PRIORITY LIST](https://github.com/OtakuStanYoutube/LinkedList/issues) before contributing.
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
