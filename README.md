@@ -26,7 +26,7 @@ While these tools are simple by design, we consider them to be more expensive an
 live preview all your changes while you work on them.
 
 ## Structure
-The folders are named after Hololoive Characters
+The folders are named after Hololive Characters
 
 | Codebase              |      Description          |
 | :-------------------- | :-----------------------: |
