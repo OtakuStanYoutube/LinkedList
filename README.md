@@ -35,7 +35,7 @@ The folders are named after Hololoive Characters
 
 ### 🏗️ Built With
 
-<div align="center">
+<div>
 
 [<img src="https://img.shields.io/badge/-Svelte-FD5602?style=for-the-badge&labelColor=black&logo=svelte&logoColor=FD5602">](https://svelte.dev/)
 
