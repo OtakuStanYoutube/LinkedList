@@ -11,7 +11,7 @@ Social Media like Instagram, Twitter, e.t.c does not provide support for multipl
 While these tools are simple by design, we consider them to be more expensive and less customizable than they should. Using Linktree as an example is very limiting ike the free version doesn't even provide a proper theme and UI customization options.
 
 ## Features
--
+
 * [ ] Display all your social media links in a single place
 * [ ] Custom Logo
 * [ ] Custom Favicon
@@ -25,17 +25,29 @@ While these tools are simple by design, we consider them to be more expensive an
 
 live preview all your changes while you work on them.
 
+## Structure
+The folders are named after Hololoive Characters
+
+| Codebase              |      Description          |
+| :-------------------- | :-----------------------: |
+| [Miko](miko)          |      Backend API          |
+| [Rushia](rushia)      |      Svelte Frontend      |
+
 ### 🏗️ Built With
 
-* [<img src="https://img.shields.io/badge/-Svelte-FD5602?style=for-the-badge&labelColor=black&logo=svelte&logoColor=FD5602">](https://svelte.dev/)
+<div align="center">
 
-* [<img src="https://img.shields.io/badge/-SCSS-cc6699?style=for-the-badge&labelColor=black&logo=sass&logoColor=cc6699">](https://sass-lang.com/)
+[<img src="https://img.shields.io/badge/-Svelte-FD5602?style=for-the-badge&labelColor=black&logo=svelte&logoColor=FD5602">](https://svelte.dev/)
 
-* [<img src="https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A">](https://nodejs.org/en/)
+[<img src="https://img.shields.io/badge/-SCSS-cc6699?style=for-the-badge&labelColor=black&logo=sass&logoColor=cc6699">](https://sass-lang.com/)
 
-* [<img src="https://img.shields.io/badge/-MongoDB-3fa037?style=for-the-badge&labelColor=black&logo=mongodb&logoColor=3fa037">](https://www.mongodb.com/1)
+[<img src="https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A">](https://nodejs.org/en/)
 
-* [<img src="https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc">](https://www.typescriptlang.org/)
+[<img src="https://img.shields.io/badge/-MongoDB-3fa037?style=for-the-badge&labelColor=black&logo=mongodb&logoColor=3fa037">](https://www.mongodb.com/1)
+
+[<img src="https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc">](https://www.typescriptlang.org/)
+
+</div>
 
 ---
 
@@ -51,8 +63,8 @@ Make sure you have Docker and docker-compose installed on your machine.
 
 #### Steps to start the server
 
-1. Add environment variable `MONGO_URI` in backend directory.
-2. Run the following command in  the project directory itself.
+1. Add environment variable `MONGO_URI` in Miko directory.
+2. Run the following command in the project directory itself.
 
       ```sh
       docker-compose up --build
@@ -70,11 +82,11 @@ Make sure you have Node and TypeScript installed on your machine.
 >
 >_The project was made with node version 14.15._
 
-#### Steps to start the server
+#### Steps to start the server 
 
-1. Add environment files in both backend and frontend/web directories.
+1. Add environment files in backend directory.
 
-      `backend/.env` file
+      `miko/.env` file
 
       ```env
       NODE_ENV = development
@@ -83,7 +95,31 @@ Make sure you have Node and TypeScript installed on your machine.
       JWT_SECRET = <Secret Key>
       ```
 
-      `frontend/web/.env` file
+2. To install all the dependencies run the following command in backend directory.
+
+      ```sh
+      yarn install
+      ```
+
+3. Run the following command in to buid the dist directory.
+
+      ```sh
+      yarn watch
+      ```
+
+4. Run the following command in to start server.
+
+      ```sh
+      yarn dev
+      ```
+
+5. Your server should be running on port [5000](http://localhost:5000).
+
+
+#### Steps to start the client
+
+1. Add environment files in frontend directory.
+      `rushia/.env` file
 
       ```env
       NODE_ENV = "development"
@@ -91,21 +127,13 @@ Make sure you have Node and TypeScript installed on your machine.
       REACT_APP_DEVELOPMENT_API_ENDPOINT = "http://localhost:5000"
       ```
 
-2. To install all the dependencies run the following command in both backend and frontend/web directory.
+2. To install all the dependencies run the following command in Frontend directory.
 
       ```sh
       yarn install
       ```
 
-3. Change the import in `index.css` file to default ant design styles or customize your css in the `theme.less` file and generate your css with the following command in the `frontend/web/src/styles` directory.
-
-      ```sh
-      lessc --js theme.less theme.css
-      ```
-
-      > **_NOTE:_** _Make sure you have installed `less` globally_
-
-4. Run the following command in  the backend directory to start both server and React app.
+3. Run the following command in the Frontend directory to start Svelte app.
 
       ```sh
       yarn dev
