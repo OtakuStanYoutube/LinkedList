@@ -4,3 +4,4 @@ trailingComma: "all"
 singleQuote: false
 arrowParens: "always"
 proseWrap: "always"
+useTabs: false
