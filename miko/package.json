@@ -15,7 +15,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "argon": "^2.0.21",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
