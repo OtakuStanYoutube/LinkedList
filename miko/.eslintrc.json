@@ -47,7 +47,7 @@
       "eqeqeq": "error",
       "func-call-spacing": "error",
       "func-name-matching": "error",
-      "func-names": "error",
+      "func-names": "off",
       "func-style": [
         "error",
         "declaration",
@@ -120,7 +120,7 @@
       "no-implicit-globals": "error",
       "no-implied-eval": "error",
       "no-inline-comments": "error",
-      "no-invalid-this": "error",
+      "no-invalid-this": "off",
       "no-iterator": "error",
       "no-label-var": "error",
       "no-labels": "error",
