@@ -171,6 +171,7 @@
       "no-trailing-spaces": "error",
       "no-undef-init": "error",
       "no-undefined": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
       "no-underscore-dangle": "off",
       "no-unmodified-loop-condition": "error",
       "no-unneeded-ternary": "error",
