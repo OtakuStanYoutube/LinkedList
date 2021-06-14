@@ -11,7 +11,7 @@ connectDB();
 
 app.listen(PORT, () =>
   console.log(
-    ` 📡 Backend server: `.inverse.yellow.bold +
+    ` Backend server: `.inverse.yellow.bold +
       ` Running in ${ENV} mode on port ${PORT}`,
   ),
 );
