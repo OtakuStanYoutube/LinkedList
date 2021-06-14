@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
+import { errors } from "../lib/logs";
 
 export const notFound = (req: Request, res: Response, next: NextFunction) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
 
   res.status(404);
-  console.log(` ! Error: `.inverse.red.bold + ` ${error.message}`);
+  errors(` ! Error: `.inverse.red.bold + ` ${error.message}`);
   next(error);
 };
 
@@ -17,7 +18,7 @@ export const errorHandler = (
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
 
   res.status(statusCode);
-  console.error(` ! Error: `.inverse.red.bold + ` ${err.message}`);
+  errors(` ! Error: `.inverse.red.bold + ` ${err.message}`);
   res.json({
     message: err.message,
     stack: process.env.NODE_ENV === "production" ? null : err.stack,
