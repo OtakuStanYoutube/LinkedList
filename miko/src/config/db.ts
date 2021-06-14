@@ -1,4 +1,5 @@
 import { connect } from "mongoose";
+import { event, errors } from "../lib/logs";
 
 const mongoURI: string = process.env.MONGO_URI!;
 
@@ -13,11 +14,9 @@ export const connectDB = async () => {
   try {
     const con = await connect(mongoURI, options);
 
-    console.log(
-      ` MongoDB Connected: `.inverse.green + ` ${con.connection.host}`,
-    );
+    event(` MongoDB Connected: `.inverse.green + ` ${con.connection.host}`);
   } catch (error) {
-    console.error(` ! Error: `.inverse.red.bold + `${error.message}`);
+    errors(` ! Error: `.inverse.red.bold + `${error.message}`);
     throw error;
   }
 };
