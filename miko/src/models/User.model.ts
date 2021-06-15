@@ -8,6 +8,7 @@ const userSchema = new Schema<IUser>(
     username: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -22,6 +23,11 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: false,
       default: "",
+    },
+    imgUrl: {
+      type: String,
+      required: true,
+      default: "https://via.placeholder.com/200/000000/FFFFFF/?text=LL",
     },
     isAdmin: {
       type: Boolean,
