@@ -6,6 +6,9 @@ import { __prod__ } from "./constants";
 import { notFound, errorHandler } from "./middlewares/error";
 import "colors";
 
+// Routes
+import { router as userRoutes } from "./routes/user";
+
 const app: Application = express();
 
 if (!__prod__) {
@@ -34,5 +37,7 @@ app.set("trust proxy", 1);
 
 app.use(notFound);
 app.use(errorHandler);
+
+app.use("api/v1/users", userRoutes);
 
 export default app;
