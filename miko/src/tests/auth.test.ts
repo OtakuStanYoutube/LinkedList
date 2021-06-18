@@ -17,7 +17,7 @@ describe("Post Endpoints", () => {
 
 describe("POST /api/v1/users/login", () => {
   connectDB();
-  describe("Given an email and password", () => {
+  describe("given an email and password", () => {
     test("should respond with a 201 status code", async () => {
       const res = await request(app).post("/api/v1/users/login").send({
         email: "test@test.com",
