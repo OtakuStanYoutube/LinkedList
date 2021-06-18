@@ -2,7 +2,7 @@ import app from "../app";
 import request from "supertest";
 import { connectDB } from "../config/db";
 
-describe("Post Endpoints", () => {
+describe("testing get endpoints", () => {
   it("should create a new post", async () => {
     const res = await request(app).get("/");
 
