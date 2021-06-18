@@ -69,6 +69,7 @@ export const registerUser = async (req: Request, res: Response) => {
     res.cookie("jwt", token, {
       httpOnly: true,
       path: "/access_token",
+      secure: __prod__,
     });
     res.status(201).json({
       id: user._id,
