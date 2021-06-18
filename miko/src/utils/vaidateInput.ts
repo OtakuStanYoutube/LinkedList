@@ -1,4 +1,4 @@
-import { emailRegEx } from "../constants";
+import { emailRegEx, usernameRegEx } from "../constants";
 
 export const validateLoginInput = (email: string, password: string) => {
   type loginErrors = {
@@ -59,7 +59,7 @@ export const validateRegisterInput = (
   if (username.trim() === "") {
     errors.username = "username can't be empty";
   } else {
-    if (!username.match(emailRegEx)) {
+    if (!username.match(usernameRegEx)) {
       errors.username = "Invalid Username";
     }
   }
