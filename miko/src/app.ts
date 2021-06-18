@@ -1,4 +1,4 @@
-import express, { Application, json } from "express";
+import express, { Application, json, Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
@@ -35,9 +35,13 @@ app.use(cookieParser());
 
 app.set("trust proxy", 1);
 
+app.get("/", (_req: Request, res: Response) =>
+  res.status(201).json({ message: "Hello" }),
+);
+
+app.use("/api/v1/users", userRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
-
-app.use("api/v1/users", userRoutes);
 
 export default app;
