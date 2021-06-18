@@ -1,7 +1,7 @@
 module.exports = {
   clearMocks: true,
   moduleFileExtensions: ["js"],
-  roots: ["<rootDir>/dist"],
+  roots: ["./dist"],
   testEnvironment: "node",
   coveragePathIgnorePatterns: ["/node_modules/"],
 };
