@@ -6,6 +6,7 @@ import {
   validateLoginInput,
   validateRegisterInput,
 } from "../utils/vaidateInput";
+import { __prod__ } from "../constants";
 
 export const loginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -25,6 +26,7 @@ export const loginUser = async (req: Request, res: Response) => {
     res.cookie("jwt", token, {
       httpOnly: true,
       path: "/access_token",
+      secure: __prod__,
     });
     res.status(201).json({
       id: user._id,
