@@ -1,4 +1,4 @@
-import { connect } from "mongoose";
+import { connect, disconnect } from "mongoose";
 import { event, errors } from "../lib/logs";
 
 const mongoURI: string = process.env.MONGO_URI!;
@@ -19,4 +19,8 @@ export const connectDB = async () => {
     errors(` ! Error: `.inverse.red.bold + `${error.message}`);
     throw error;
   }
+};
+
+export const connectClose = async () => {
+  await disconnect();
 };
