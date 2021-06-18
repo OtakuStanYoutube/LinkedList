@@ -39,7 +39,7 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.methods.matchPassword = async function (enteredPassword: string) {
-  return await verify(enteredPassword, this.password);
+  return await verify(this.password, enteredPassword);
 };
 
 userSchema.pre("save", async function (this: IUser, next) {
