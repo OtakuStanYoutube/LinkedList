@@ -91,14 +91,17 @@ Make sure you have Node and TypeScript installed on your machine.
       ```env
       NODE_ENV = development
       PORT = 5000
+
       MONGO_URI = <URI>
-      JWT_SECRET = <Secret Key>
+
+      LINKEDLIST_ACCESS_TOKEN_SECRET=accestokensecret
+      LINKEDLIST_REFRESH_TOKEN_SECRET=refreshtokensecret
       ```
 
 2. To install all the dependencies run the following command in backend directory.
 
       ```sh
-      yarn install
+      yarn add .
       ```
 
 3. Run the following command in to buid the dist directory.
@@ -130,7 +133,7 @@ Make sure you have Node and TypeScript installed on your machine.
 2. To install all the dependencies run the following command in Frontend directory.
 
       ```sh
-      yarn install
+      yarn add .
       ```
 
 3. Run the following command in the Frontend directory to start Svelte app.
