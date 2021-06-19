@@ -6,5 +6,6 @@ export interface IUser extends Document {
   password: string;
   imgUrl: string;
   isAdmin?: boolean;
+  activeProfile: string;
   matchPassword: (password: string) => string;
 }
