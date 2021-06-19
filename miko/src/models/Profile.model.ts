@@ -20,7 +20,7 @@ const profileSchema = new Schema<IProfile>(
     },
     parent: {
       type: Schema.Types.ObjectId,
-      ref: "Profile",
+      ref: "User",
       required: true,
     },
     social: [
