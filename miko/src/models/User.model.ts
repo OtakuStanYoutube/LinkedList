@@ -29,6 +29,10 @@ const userSchema = new Schema<IUser>(
       required: true,
       default: false,
     },
+    activeProfile: {
+      type: Schema.Types.ObjectId,
+      ref: "Profile",
+    },
   },
   { timestamps: true },
 );
