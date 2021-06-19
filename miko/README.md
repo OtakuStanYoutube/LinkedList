@@ -46,10 +46,10 @@ Make sure you have Node and TypeScript installed on your machine.
       ```env
       NODE_ENV=development
       PORT=5000
-      PG_PORT=<postgres port number>
-      HOST=<hostname>
-      USERNAME=<username>
-      PASSWORD=<password>
+      MONGO_URI=<Mongo db connection string>
+
+      LINKEDLIST_ACCESS_TOKEN_SECRET=accestokensecret
+      LINKEDLIST_REFRESH_TOKEN_SECRET=refreshtokensecret
       ```
 
 2. To install all the dependencies run the following command.
