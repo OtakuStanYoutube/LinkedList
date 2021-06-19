@@ -69,6 +69,9 @@ export const registerUser = async (req: Request, res: Response) => {
       handle: user.username,
     });
 
+    user.activeProfile = profile._id;
+    await user.save();
+
     const token = generateAccessToken(user._id);
 
     res.cookie("jwt", token, {
