@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../models";
+import { User, Profile } from "../models";
 import { generateAccessToken } from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
 import {
@@ -64,6 +64,11 @@ export const registerUser = async (req: Request, res: Response) => {
   const user = await User.create({ username, email, password });
 
   if (user) {
+    const profile = await Profile.create({
+      parent: user._id,
+      handle: user.username,
+    });
+
     const token = generateAccessToken(user._id);
 
     res.cookie("jwt", token, {
@@ -73,6 +78,7 @@ export const registerUser = async (req: Request, res: Response) => {
     });
     res.status(201).json({
       id: user._id,
+      profileId: profile._id,
       isAdmin: user.isAdmin,
       token,
     });
