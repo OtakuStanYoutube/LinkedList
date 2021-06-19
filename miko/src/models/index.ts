@@ -1,3 +1,4 @@
 import { User } from "./User.model";
+import { Profile } from "./Profile.model";
 
-export { User };
+export { User, Profile };
