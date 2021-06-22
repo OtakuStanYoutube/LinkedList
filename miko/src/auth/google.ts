@@ -41,6 +41,7 @@ export default (passport: PassportStatic): Router => {
     passport.authenticate("google"),
     (req: Request, res: Response) => {
       console.log(req.user);
+      res.cookie("jwt", "rtwrtwertwere");
       res.status(201).redirect("/");
     },
   );

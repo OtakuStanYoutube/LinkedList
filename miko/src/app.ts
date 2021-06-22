@@ -40,8 +40,15 @@ app.set("trust proxy", 1);
 // Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.serializeUser((user, done) => done(null, user));
-// passport.deserializeUser((user, done) => done(null, user));
+passport.serializeUser((user, done) => {
+  console.log("I have Loli");
+  done(null, user);
+});
+
+passport.deserializeUser((user: any, done) => {
+  console.log("I got arrested");
+  done(null, user);
+});
 
 app.get("/", (_req: Request, res: Response) =>
   res.status(201).json({ message: "Hello" }),
