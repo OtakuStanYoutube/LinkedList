@@ -19,6 +19,11 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
+    oauthId: {
+      type: String,
+      required: false,
+      default: "",
+    },
     imgUrl: {
       type: String,
       required: true,
