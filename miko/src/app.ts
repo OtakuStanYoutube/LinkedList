@@ -9,6 +9,7 @@ import "colors";
 
 // Routes
 import { router as userRoutes } from "./routes/user";
+import authRoutes from "./routes/auth";
 
 const app: Application = express();
 
@@ -47,6 +48,8 @@ app.get("/", (_req: Request, res: Response) =>
 );
 
 app.use("/api/v1/users", userRoutes);
+
+app.use("/api/v1/auth", authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
