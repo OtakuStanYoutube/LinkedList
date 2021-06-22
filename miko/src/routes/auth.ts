@@ -11,6 +11,10 @@ export default (passport: PassportStatic): Router => {
   //     authRouter.use("/twitter", TwitterAuth(passport));
   //   if (process.env.LINKEDLIST_API_DISCORD_CLIENT_ID)
   //     authRouter.use("/discord", DiscordAuth(passport));
+
+  // @desc     Authenticate and Login User using Google OAuth
+  // @route    POST /api/v1/auth/google
+  // @access   Public
   if (process.env.LINKEDLIST_API_GOOGLE_CLIENT_ID) {
     authRouter.use("/google", GoogleAuth(passport));
   }
