@@ -2,6 +2,7 @@ import express, { Application, json, Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import passport from "passport";
 import { __prod__ } from "./constants";
 import { notFound, errorHandler } from "./middlewares/error";
 import "colors";
@@ -34,6 +35,12 @@ app.use(json());
 app.use(cookieParser());
 
 app.set("trust proxy", 1);
+
+// Passport configuration
+app.use(passport.initialize());
+// app.use(passport.session());
+// passport.serializeUser((user, done) => done(null, user));
+// passport.deserializeUser((user, done) => done(null, user));
 
 app.get("/", (_req: Request, res: Response) =>
   res.status(201).json({ message: "Hello" }),
