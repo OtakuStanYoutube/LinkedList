@@ -14,15 +14,14 @@ export default (passport: PassportStatic): Router => {
       async (_, __, profile, done) => {
         const id = String(profile.id);
         const user = await User.findOne({ where: { google: id } });
-        const newUser = {
-          username: "test",
-          profile: "lolicon",
-        };
 
         console.log(profile);
-        console.log(user);
 
-        return done(null, { username: newUser.username });
+        const newUser = {
+          username: profile.displayName,
+        };
+
+        return done(null, newUser);
       },
     ),
   );
@@ -39,10 +38,11 @@ export default (passport: PassportStatic): Router => {
 
   router.get(
     "/callback",
-    passport.authenticate("google", (req: Request, res: Response) => {
+    passport.authenticate("google"),
+    (req: Request, res: Response) => {
       console.log(req.user);
       res.status(201).redirect("/");
-    }),
+    },
   );
 
   return router;
