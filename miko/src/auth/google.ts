@@ -1,7 +1,9 @@
 import { Router, Request, Response } from "express";
-import { Strategy } from "passport-google-oauth20";
-import { User } from "../models";
+import { Strategy } from "passport-google-oauth2";
+import { User, Profile } from "../models";
 import { PassportStatic } from "passport";
+// import { generateAccessToken } from "../utils/generateToken";
+import { generateUniqueUsername } from "../utils/generateUniqueUsername";
 
 export default (passport: PassportStatic): Router => {
   passport.use(
@@ -13,15 +15,33 @@ export default (passport: PassportStatic): Router => {
       },
       async (_, __, profile, done) => {
         const id = String(profile.id);
-        const user = await User.findOne({ where: { google: id } });
+        let username = profile.displayName.replace(/ /g, "_");
+        const email = String(profile.email);
+        const user = await User.findOne({ where: { oauthId: id } });
 
-        console.log(profile);
+        if (user) {
+          return done(null, user);
+        } else {
+          const usernameExists = await User.findOne({ username });
 
-        const newUser = {
-          username: profile.displayName,
-        };
+          if (usernameExists) {
+            username = generateUniqueUsername(username);
+          }
 
-        return done(null, newUser);
+          const newUser = await User.create({ username, email, oauthId: id });
+
+          if (newUser) {
+            const newProfile = await Profile.create({
+              parent: newUser._id,
+              handle: newUser.username,
+            });
+
+            newUser.activeProfile = newProfile._id;
+            await newUser.save();
+
+            return done(null, newUser);
+          }
+        }
       },
     ),
   );
@@ -31,7 +51,7 @@ export default (passport: PassportStatic): Router => {
   router.get(
     "/",
     passport.authenticate("google", {
-      scope: ["https://www.googleapis.com/auth/userinfo.profile"],
+      scope: ["profile", "email"],
       session: false,
     }),
   );
@@ -41,6 +61,8 @@ export default (passport: PassportStatic): Router => {
     passport.authenticate("google"),
     (req: Request, res: Response) => {
       console.log(req.user);
+      //   const token = generateAccessToken(req.user!._id);
+
       res.cookie("jwt", "rtwrtwertwere");
       res.status(201).redirect("/");
     },
