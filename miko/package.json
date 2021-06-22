@@ -24,7 +24,11 @@
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.12",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-twitter": "^1.0.4"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
