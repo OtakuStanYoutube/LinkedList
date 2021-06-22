@@ -55,6 +55,7 @@ export default (passport: PassportStatic): Router => {
 
   const router = Router();
 
+  // Google OAuth
   router.get(
     "/",
     passport.authenticate("google", {
@@ -63,6 +64,7 @@ export default (passport: PassportStatic): Router => {
     }),
   );
 
+  // Callback URL
   router.get(
     "/callback",
     passport.authenticate("google"),
