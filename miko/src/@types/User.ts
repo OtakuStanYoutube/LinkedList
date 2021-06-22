@@ -5,6 +5,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   imgUrl: string;
+  oauthId?: string;
   isAdmin?: boolean;
   activeProfile: string;
   matchPassword: (password: string) => string;
