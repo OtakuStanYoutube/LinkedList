@@ -2,8 +2,9 @@ import { Router, Request, Response } from "express";
 import { Strategy } from "passport-google-oauth2";
 import { User, Profile } from "../models";
 import { PassportStatic } from "passport";
-// import { generateAccessToken } from "../utils/generateToken";
+import { generateAccessToken } from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
+import { __prod__ } from "../constants";
 
 export default (passport: PassportStatic): Router => {
   passport.use(
@@ -17,7 +18,7 @@ export default (passport: PassportStatic): Router => {
         const id = String(profile.id);
         let username = profile.displayName.replace(/ /g, "_");
         const email = String(profile.email);
-        const user = await User.findOne({ where: { oauthId: id } });
+        const user = await User.findOne({ oauthId: id });
 
         if (user) {
           return done(null, user);
@@ -28,12 +29,18 @@ export default (passport: PassportStatic): Router => {
             username = generateUniqueUsername(username);
           }
 
-          const newUser = await User.create({ username, email, oauthId: id });
+          const newUser = await User.create({
+            username,
+            email,
+            oauthId: id,
+            imgUrl: profile._json.picture,
+          });
 
           if (newUser) {
             const newProfile = await Profile.create({
               parent: newUser._id,
               handle: newUser.username,
+              imgUrl: newUser.imgUrl,
             });
 
             newUser.activeProfile = newProfile._id;
@@ -60,10 +67,13 @@ export default (passport: PassportStatic): Router => {
     "/callback",
     passport.authenticate("google"),
     (req: Request, res: Response) => {
-      console.log(req.user);
-      //   const token = generateAccessToken(req.user!._id);
+      const token = generateAccessToken(req.user!._id);
 
-      res.cookie("jwt", "rtwrtwertwere");
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        path: "/",
+        secure: __prod__,
+      });
       res.status(201).redirect("/");
     },
   );
