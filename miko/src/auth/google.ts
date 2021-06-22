@@ -17,6 +17,7 @@ export default (passport: PassportStatic): Router => {
 
         console.log(profile);
         console.log(user);
+        done(null, id);
       },
     ),
   );
