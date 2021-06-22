@@ -49,7 +49,7 @@ app.get("/", (_req: Request, res: Response) =>
 
 app.use("/api/v1/users", userRoutes);
 
-app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes(passport));
 
 app.use(notFound);
 app.use(errorHandler);
