@@ -67,8 +67,7 @@ export default (passport: PassportStatic): Router => {
     "/callback",
     passport.authenticate("google"),
     (req: Request, res: Response) => {
-      console.log(req.currentUser);
-      const token = generateAccessToken(req.currentUser._id);
+      const token = generateAccessToken(req.user!._id);
 
       res.cookie("jwt", token, {
         httpOnly: true,
