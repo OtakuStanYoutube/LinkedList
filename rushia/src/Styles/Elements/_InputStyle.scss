@@ -1,0 +1,11 @@
+.txt_input_full {
+  background-color: transparent;
+  border: 1px solid var(--main-font-color);
+  padding: 0.5rem 1rem;
+  color: var(--main-font-color);
+  font-size: 1em;
+
+  &::placeholder {
+    color: #b0b0b0;
+  }
+}

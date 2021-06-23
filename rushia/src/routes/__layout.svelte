@@ -1,45 +1,23 @@
 <script lang="ts">
-	import Header from '$lib/Header/index.svelte';
-	import '../app.css';
+  import "../app.scss";
 </script>
 
-<Header />
+<div class="header">
+  <div class="logo_container">LinkList</div>
+</div>
+<slot />
 
-<main>
-	<slot />
-</main>
+<style lang="scss">
+  .header {
+    background-color: var(--main-fg-color);
+    color: var(--main-font-color);
+    padding: 0.2em 1em;
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
-
-<style>
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
-	}
+    .logo_container {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -5%;
+      margin-left: 1em;
+    }
+  }
 </style>

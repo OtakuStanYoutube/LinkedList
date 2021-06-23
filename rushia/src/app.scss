@@ -1,0 +1,8 @@
+@use "./Styles/root";
+@use "./Styles/Elements/buttons";
+@use "./Styles/Elements/InputStyle";
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
+}

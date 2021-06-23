@@ -1,0 +1,29 @@
+* {
+  /* Base Style */
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+
+  /* Vars */
+
+  // Colors
+  --main-bg-color: hsl(0, 0%, 13%);
+  --main-fg-color: hsl(0, 0%, 21%);
+  --main-font-color: hsl(0, 0%, 100%);
+
+  // fonts-size
+  --extra-small-font: 8px;
+  --small-font: 12px;
+  --main-font-size-small: 16px;
+  --main-font-size-large: 20px;
+  --sub-heading-font-small: 25px;
+  --sub-heading-font-large: 31.25px;
+  --heading-font-small: 39.86px;
+  --heading-font-large: 48.83;
+
+  //font-weight
+  --light-font-weight: 300;
+  --regular-font-weight: 400;
+  --bold-font-weight: 600;
+}
