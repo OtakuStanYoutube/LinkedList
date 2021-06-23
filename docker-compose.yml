@@ -5,6 +5,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./miko
+    container_name: miko
     depends_on:
       - redis
     volumes:
@@ -18,6 +19,7 @@ services:
 
   redis:
     image: redis
+    container_name: redis_db
     ports:
       - 12279:12279
     volumes:
