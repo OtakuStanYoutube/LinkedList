@@ -1,3 +1,3 @@
-import GoogleAuth from "./google";
+import GoogleAuth from "./providers/google";
 
 export { GoogleAuth };
