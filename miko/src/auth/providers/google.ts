@@ -67,7 +67,7 @@ export default (passport: PassportStatic): Router => {
   // Callback URL
   router.get(
     "/callback",
-    passport.authenticate("google"),
+    passport.authenticate("google", { failureRedirect: "/login" }),
     (req: Request, res: Response) => {
       const token = generateAccessToken(req.user!._id);
 
