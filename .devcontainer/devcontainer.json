@@ -20,7 +20,10 @@
 	"workspaceFolder": "/workspace",
 
 	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+	"settings": {
+		"terminal.integrated.profiles.linux": "/bin/zsh",
+		"workbench.colorTheme": "Tokyo Night"
+	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
