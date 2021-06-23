@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
 import { Strategy } from "passport-google-oauth2";
-import { User, Profile } from "../models";
+import { User, Profile } from "../../models";
 import { PassportStatic } from "passport";
-import { generateAccessToken } from "../utils/generateToken";
-import { generateUniqueUsername } from "../utils/generateUniqueUsername";
-import { __prod__ } from "../constants";
+import { generateAccessToken } from "../../utils/generateToken";
+import { generateUniqueUsername } from "../../utils/generateUniqueUsername";
+import { __prod__ } from "../../constants";
 
 export default (passport: PassportStatic): Router => {
   passport.use(
