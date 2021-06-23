@@ -1,0 +1,33 @@
+version: "1.1"
+
+services:
+  miko:
+    build:
+      dockerfile: Dockerfile
+      context: ./miko
+    depends_on:
+      - redis
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    env_file: ./miko/.env
+    ports:
+      - 5000:5000
+    networks:
+      - linkedlist-app
+
+  redis:
+    image: redis
+    ports:
+      - 12279:12279
+    volumes:
+      - ./redis-data:/app/redis/data
+    networks:
+      - linkedlist-app
+
+networks:
+  linkedlist-app:
+    driver: bridge
+
+volumes:
+  redis-data:
