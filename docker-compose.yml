@@ -9,8 +9,8 @@ services:
     depends_on:
       - redis
     volumes:
-      - /app/node_modules
-      - ./backend:/app
+      - /miko/node_modules
+      - ./miko:/miko
     env_file: ./miko/.env
     ports:
       - 5000:5000
@@ -21,7 +21,7 @@ services:
     image: redis
     container_name: redis_db
     ports:
-      - 12279:12279
+      - 6379:12279
     volumes:
       - ./redis-data:/app/redis/data
     networks:

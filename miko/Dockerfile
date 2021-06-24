@@ -2,7 +2,7 @@
 FROM node:14.16-alpine
 
 ENV NODE_ENV=production
-WORKDIR "/app"
+WORKDIR "/miko"
 
 RUN yarn global add typescript
 
