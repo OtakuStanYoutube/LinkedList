@@ -11,6 +11,8 @@ COPY ./yarn.lock ./
 
 RUN yarn install
 
+RUN yarn build
+
 COPY . .
 
 EXPOSE 5000
