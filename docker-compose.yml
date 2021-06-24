@@ -21,7 +21,7 @@ services:
     image: redis
     container_name: redis_db
     ports:
-      - 6379:12279
+      - 6379:6379
     volumes:
       - ./redis-data:/app/redis/data
     networks:
