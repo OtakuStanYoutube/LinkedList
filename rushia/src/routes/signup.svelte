@@ -1,9 +1,9 @@
 <script>
-  import LoginForm from "../Components/loginForm.svelte";
+  import SignuoForm from "../Components/signupForm.svelte";
 </script>
 
 <section class="contianer">
-  <LoginForm />
+  <SignuoForm />
 </section>
 
 <style lang="scss">

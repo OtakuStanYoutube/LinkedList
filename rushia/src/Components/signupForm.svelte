@@ -2,22 +2,33 @@
   import Card from "../Components/Shared/card.svelte";
 
   let Email: string;
+  let Username: string;
   let Password: string;
 
-  const LoginSubmit = (e: any) => {
+  const signupSubmit = (e: any) => {
     e.preventDefault();
-    if (!Email && !Password) {
+    if (!Email && !Password && !Username) {
       console.log(`fields can not be empty`);
     } else {
-      console.log(`${Email} and ${Password}`);
+      console.log(`${Email} and ${Password} and ${Username}`);
     }
   };
 </script>
 
 <Card>
-  <section class="login_form">
-    <section class="heading">Log In</section>
+  <section class="signup_form">
+    <section class="heading">Sign Up</section>
     <section class="form_container">
+      <lable class="email_lable"> Username </lable>
+      <input
+        type="text"
+        name="username"
+        class="txt_input_full username"
+        id="username"
+        placeholder="Enetr Your Username Here"
+        bind:value={Username}
+        required
+      />
       <lable class="email_lable"> E-mail </lable>
       <input
         type="text"
@@ -38,9 +49,8 @@
         bind:value={Password}
         required
       />
-      <a href="/forgot_password">Forgot Password?</a>
-      <button class="temporary btn_prime_green" on:click={LoginSubmit}
-        >Log In</button
+      <button class="temporary btn_prime_green" on:click={signupSubmit}
+        >Sign Up</button
       >
     </section>
     <section class="oauth">
@@ -55,7 +65,7 @@
 </Card>
 
 <style lang="scss">
-  .login_form {
+  .signup_form {
     width: clamp(200px, 23vw, 370px);
     display: grid;
 
