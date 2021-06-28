@@ -50,9 +50,15 @@ passport.deserializeUser((user: any, done) => {
   done(null, user);
 });
 
-app.get("/", (_req: Request, res: Response) =>
-  res.status(201).json({ message: "Hello" }),
-);
+if (!__prod__) {
+  app.get("/", (_req: Request, res: Response) =>
+    res.status(201).json({ message: "Hello" }),
+  );
+
+  app.get("/user", (req: Request, res: Response) => {
+    res.status(201).json({ message: "logged in", user: req.body.user });
+  });
+}
 
 app.use("/api/v1/users", userRoutes);
 
