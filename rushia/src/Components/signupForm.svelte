@@ -121,11 +121,6 @@
         justify-self: end;
         margin-top: 1em;
       }
-
-      a {
-        text-decoration: none;
-        color: var(--main-font-color);
-      }
     }
   }
 </style>
