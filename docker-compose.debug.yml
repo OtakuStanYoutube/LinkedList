@@ -13,6 +13,8 @@ services:
     env_file: ./miko/.env
     ports:
       - 5000:5000
+    links: 
+      - redis
     networks:
       - linkedlist-app
 
@@ -21,7 +23,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - ./redis-data:/app/redis/data
+      - ./redis-data:/miko/redis/data
     networks:
       - linkedlist-app
 
@@ -31,3 +33,4 @@ networks:
 
 volumes:
   redis-data:
+    driver: local
