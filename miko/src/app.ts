@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import { __prod__ } from "./constants";
 import { notFound, errorHandler } from "./middlewares/error";
+import { verifyToken } from "./middlewares/auth";
 import "colors";
 
 // Routes
@@ -55,7 +56,7 @@ if (!__prod__) {
     res.status(201).json({ message: "Hello" }),
   );
 
-  app.get("/user", (req: Request, res: Response) => {
+  app.get("/user", verifyToken, (req: Request, res: Response) => {
     res.status(201).json({ message: "logged in", user: req.body.user });
   });
 }
