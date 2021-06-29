@@ -53,7 +53,6 @@ export const verifyRefreshToken = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.cookies.jwt;
   const refreshToken = req.cookies.jwt_refresh;
 
   if (!refreshToken) {
