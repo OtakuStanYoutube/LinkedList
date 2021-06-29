@@ -79,7 +79,7 @@ export const verifyRefreshToken = async (
           message: "❗ Invalid Request! Token is not in store",
         });
       }
-      if (JSON.parse(data!).token !== token) {
+      if (JSON.parse(data!).token !== refreshToken) {
         res.status(401).json({
           status: false,
           message: "❗ Invalid Request! Token is not in same store",
