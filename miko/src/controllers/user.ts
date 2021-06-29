@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { User, Profile } from "../models";
-import { generateAccessToken } from "../utils/generateToken";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
 import {
   validateLoginInput,
@@ -21,17 +24,23 @@ export const loginUser = async (req: Request, res: Response) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    const token = generateAccessToken(user._id);
+    const accessToken = generateAccessToken(user._id);
+    const refreshToken = generateRefreshToken(user._id);
 
-    res.cookie("jwt", token, {
+    res.cookie("jwt", accessToken, {
       httpOnly: true,
       path: "/access_token",
+      secure: __prod__,
+    });
+    res.cookie("jwt_refresh", refreshToken, {
+      httpOnly: true,
+      path: "/refresh_token",
       secure: __prod__,
     });
     res.status(201).json({
       id: user._id,
       isAdmin: user.isAdmin,
-      token,
+      accessToken,
     });
   } else {
     res.status(401);
@@ -72,18 +81,24 @@ export const registerUser = async (req: Request, res: Response) => {
     user.activeProfile = profile._id;
     await user.save();
 
-    const token = generateAccessToken(user._id);
+    const accessToken = generateAccessToken(user._id);
+    const refreshToken = generateRefreshToken(user._id);
 
-    res.cookie("jwt", token, {
+    res.cookie("jwt", accessToken, {
       httpOnly: true,
       path: "/access_token",
+      secure: __prod__,
+    });
+    res.cookie("jwt_refresh", refreshToken, {
+      httpOnly: true,
+      path: "/refresh_token",
       secure: __prod__,
     });
     res.status(201).json({
       id: user._id,
       profileId: profile._id,
       isAdmin: user.isAdmin,
-      token,
+      accessToken,
     });
   } else {
     throw new Error("❗ Invalid User!");
