@@ -29,7 +29,7 @@ export const generateRefreshToken = (id: string) => {
 
   redisClient.get(id.toString(), (err) => {
     if (err) {
-      throw new Error(`Error - ${err.message}`);
+      throw new Error(`❗ Error - ${err.message}`);
     }
 
     redisClient.set(id.toString(), JSON.stringify({ token: refreshToken }));
