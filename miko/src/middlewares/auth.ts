@@ -71,7 +71,7 @@ export const verifyRefreshToken = async (
 
     redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
       if (err) {
-        throw new Error(err.message);
+        throw new Error(`❗ Error - ${err.message}`);
       }
       if (!data) {
         res.status(401).json({
