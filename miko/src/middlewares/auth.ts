@@ -36,8 +36,8 @@ export const verifyToken = async (
           message: "❗ Blacklisted Token!",
         });
       }
-      next();
     });
+    next();
   } catch (error) {
     res
       .status(401)
@@ -85,9 +85,8 @@ export const verifyRefreshToken = async (
           message: "❗ Invalid Request! Token is not in same store",
         });
       }
-
-      next();
     });
+    next();
   } catch (error) {
     res.status(401).json({ status: false });
     throw new Error("❌ Not Authorized! Invalid Token");
