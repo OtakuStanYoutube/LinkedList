@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 import { User } from "../models";
+import { redisClient } from "../config/redis_connect";
 
 type decoded = {
   id: string;
@@ -15,7 +16,7 @@ export const verifyToken = async (
   const token = req.cookies.jwt;
 
   if (!token) {
-    res.status(401);
+    res.status(401).json({ status: false, message: "No Access Token found" });
     throw new Error("❌ No Token found");
   }
 
@@ -25,15 +26,29 @@ export const verifyToken = async (
     );
 
     req.body.user! = await User.findById(decoded.id).select("-password");
+    redisClient.get(`BL_${decoded.id.toString()}`, (err, data) => {
+      if (err) {
+        throw new Error(err.message);
+      }
+      if (data === token) {
+        res.status(401).json({
+          status: false,
+          message: "❗ Blacklisted Token!",
+        });
+      }
+      next();
+    });
   } catch (error) {
-    res.status(401);
+    res
+      .status(401)
+      .json({ status: false, message: "Not Authorized! Invalid Token" });
     throw new Error("❌ Not Authorized! Invalid Token");
   }
 
   next();
 };
 
-export const verifyRefreshToken = (
+export const verifyRefreshToken = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -42,24 +57,40 @@ export const verifyRefreshToken = (
   const refreshToken = req.cookies.jwt_refresh;
 
   if (!refreshToken) {
-    res.status(401);
+    res.status(401).json({ status: false, message: "No Refresh Token found" });
     throw new Error("❌ No Refresh Token found");
   }
 
   try {
-    const decodedToken = <decoded>(
-      verify(token, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!)
-    );
     const decodedRefreshToken = <decoded>(
       verify(refreshToken, process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!)
     );
 
-    if (decodedToken.exp * 1000 < Date.now()) {
-      console.log(decodedRefreshToken);
+    req.body.user! = await User.findById(decodedRefreshToken.id).select(
+      "-password",
+    );
+
+    redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
+      if (err) {
+        throw new Error(err.message);
+      }
+      if (!data) {
+        res.status(401).json({
+          status: false,
+          message: "❗ Invalid Request! Token is not in store",
+        });
+      }
+      if (JSON.parse(data!).token !== token) {
+        res.status(401).json({
+          status: false,
+          message: "❗ Invalid Request! Token is not in same store",
+        });
+      }
+
       next();
-    }
+    });
   } catch (error) {
-    res.status(401);
+    res.status(401).json({ status: false });
     throw new Error("❌ Not Authorized! Invalid Token");
   }
 };
