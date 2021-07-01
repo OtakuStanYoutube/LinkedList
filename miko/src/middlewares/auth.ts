@@ -76,10 +76,6 @@ export const verifyRefreshToken = async (
       verify(refreshToken, process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!)
     );
 
-    req.body.user! = await User.findById(decodedRefreshToken.id).select(
-      "-password",
-    );
-
     redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
       if (err) {
         throw new Error(`❗ Error - ${err.message}`);
@@ -97,6 +93,10 @@ export const verifyRefreshToken = async (
         });
       }
     });
+
+    req.body.user! = await User.findById(decodedRefreshToken.id).select(
+      "-password",
+    );
     next();
   } catch (error) {
     res.status(401).json({ status: false });
