@@ -34,6 +34,11 @@ const userSchema = new Schema<IUser>(
       required: true,
       default: false,
     },
+    tokenId: {
+      type: String,
+      required: true,
+      default: "",
+    },
     activeProfile: {
       type: Schema.Types.ObjectId,
       ref: "Profile",
