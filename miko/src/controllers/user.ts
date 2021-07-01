@@ -117,6 +117,13 @@ export const getAccessToken = async (req: Request, res: Response) => {
       path: "/refresh_token",
       secure: __prod__,
     });
+
+    res.status(201).json({
+      id: user._id,
+      isAdmin: user.isAdmin,
+      accessToken,
+      refreshToken
+    });
   } else {
     res.status(401);
     throw new Error("❗ Invalid User");
