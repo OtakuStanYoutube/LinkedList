@@ -36,7 +36,7 @@ const userSchema = new Schema<IUser>(
     },
     tokenId: {
       type: String,
-      required: true,
+      required: false,
       default: "",
     },
     activeProfile: {
