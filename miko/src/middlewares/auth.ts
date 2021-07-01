@@ -59,7 +59,7 @@ export const verifyToken = async (
   next();
 };
 
-export const verifyRefreshToken = async (
+export const verifyRefreshToken = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -94,11 +94,7 @@ export const verifyRefreshToken = async (
       }
     });
 
-    const user = await User.findById(decodedRefreshToken.id).select(
-      "-password",
-    );
-
-    req.body.user! = user;
+    req.user!._id = decodedRefreshToken.id;
     next();
   } catch (error) {
     res.status(401).json({ status: false });
