@@ -94,3 +94,31 @@ export const registerUser = async (req: Request, res: Response) => {
     throw new Error("❗ Invalid User!");
   }
 };
+
+export const getAccessToken = async (req: Request, res: Response) => {
+  const user = await User.findById(req.user!._id);
+
+  if (user) {
+    const tokenId = uuidv4();
+
+    user.tokenId = tokenId;
+    await user.save();
+
+    const accessToken = generateAccessToken(user._id, tokenId);
+    const refreshToken = generateRefreshToken(user._id);
+
+    res.cookie("jwt", accessToken, {
+      httpOnly: true,
+      path: "/access_token",
+      secure: __prod__,
+    });
+    res.cookie("jwt_refresh", refreshToken, {
+      httpOnly: true,
+      path: "/refresh_token",
+      secure: __prod__,
+    });
+  } else {
+    res.status(401);
+    throw new Error("❗ Invalid User");
+  }
+};
