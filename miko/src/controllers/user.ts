@@ -96,7 +96,7 @@ export const registerUser = async (req: Request, res: Response) => {
 };
 
 export const getAccessToken = async (req: Request, res: Response) => {
-  const user = await User.findById(req.user!._id);
+  const user = await User.findById(req.body.id);
 
   if (user) {
     const tokenId = uuidv4();
