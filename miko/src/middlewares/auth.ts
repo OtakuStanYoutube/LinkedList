@@ -40,7 +40,7 @@ export const verifyToken = async (
 
     const user = await User.findById(decoded.id).select("-password");
 
-    if (user!.tokenId !== decoded.tokenId) {
+    if (user?.tokenId !== decoded.tokenId) {
       res.status(401).json({
         status: false,
         message: "Token already Expired",
