@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { v4 as uuidv4 } from "uuid";
 import { User, Profile } from "../models";
 import {
   generateAccessToken,
@@ -24,7 +25,12 @@ export const loginUser = async (req: Request, res: Response) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    const accessToken = generateAccessToken(user._id);
+    const tokenId = uuidv4();
+
+    user.tokenId = tokenId;
+    await user.save();
+
+    const accessToken = generateAccessToken(user._id, tokenId);
     const refreshToken = generateRefreshToken(user._id);
 
     res.cookie("jwt", accessToken, {
