@@ -80,25 +80,9 @@ export const registerUser = async (req: Request, res: Response) => {
 
     user.activeProfile = profile._id;
     await user.save();
-
-    const accessToken = generateAccessToken(user._id);
-    const refreshToken = generateRefreshToken(user._id);
-
-    res.cookie("jwt", accessToken, {
-      httpOnly: true,
-      path: "/access_token",
-      secure: __prod__,
-    });
-    res.cookie("jwt_refresh", refreshToken, {
-      httpOnly: true,
-      path: "/refresh_token",
-      secure: __prod__,
-    });
     res.status(201).json({
-      id: user._id,
-      profileId: profile._id,
-      isAdmin: user.isAdmin,
-      accessToken,
+      status: true,
+      message: "User registered sucessfully",
     });
   } else {
     throw new Error("❗ Invalid User!");
