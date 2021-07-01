@@ -94,9 +94,11 @@ export const verifyRefreshToken = async (
       }
     });
 
-    req.body.user! = await User.findById(decodedRefreshToken.id).select(
+    const user = await User.findById(decodedRefreshToken.id).select(
       "-password",
     );
+
+    req.body.user! = user;
     next();
   } catch (error) {
     res.status(401).json({ status: false });
