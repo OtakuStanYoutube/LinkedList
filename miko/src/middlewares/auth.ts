@@ -5,6 +5,7 @@ import { redisClient } from "../config/redis_connect";
 
 type decoded = {
   id: string;
+  tokenId: string;
   exp: number;
 };
 
@@ -25,7 +26,6 @@ export const verifyToken = async (
       verify(token, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!)
     );
 
-    req.body.user! = await User.findById(decoded.id).select("-password");
     redisClient.get(`BL_${decoded.id.toString()}`, (err, data) => {
       if (err) {
         throw new Error(err.message);
@@ -37,6 +37,17 @@ export const verifyToken = async (
         });
       }
     });
+
+    const user = await User.findById(decoded.id).select("-password");
+
+    if (user!.tokenId !== decoded.tokenId) {
+      res.status(401).json({
+        status: false,
+        message: "Token already Expired",
+      });
+    }
+
+    req.body.user! = user;
     next();
   } catch (error) {
     res
