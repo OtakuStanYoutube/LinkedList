@@ -5,7 +5,7 @@ import { redisClient } from "../config/redis_connect";
 
 type decoded = {
   id: string;
-  tokenId: string;
+  tokenId?: string;
   exp: number;
 };
 
@@ -94,10 +94,11 @@ export const verifyRefreshToken = (
       }
     });
 
-    req.user!._id = decodedRefreshToken.id;
+    req.body.id = decodedRefreshToken.id;
     next();
   } catch (error) {
     res.status(401).json({ status: false });
+    console.log(error);
     throw new Error("❌ Not Authorized! Invalid Token");
   }
 };
