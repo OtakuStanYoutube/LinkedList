@@ -2,11 +2,12 @@ import { sign } from "jsonwebtoken";
 import { redisClient } from "../config/redis_connect";
 import { __prod__ } from "../constants";
 
-export const generateAccessToken = (id: string) => {
+export const generateAccessToken = (id: string, tokenId: string) => {
   type payload = {
     id: string;
+    tokenId: string;
   };
-  const payload: payload = { id };
+  const payload: payload = { id, tokenId };
 
   return sign(payload, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!, {
     expiresIn: __prod__ ? "1h" : "24h",
