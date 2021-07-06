@@ -39,6 +39,16 @@ const userSchema = new Schema<IUser>(
       required: false,
       default: "",
     },
+    isActive: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     activeProfile: {
       type: Schema.Types.ObjectId,
       ref: "Profile",
