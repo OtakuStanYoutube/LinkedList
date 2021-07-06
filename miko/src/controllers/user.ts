@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { User, Profile } from "../models";
+import { User, Profile, Token } from "../models";
+import { randomBytes } from "crypto";
 import {
   generateAccessToken,
   generateRefreshToken,
@@ -84,11 +85,17 @@ export const registerUser = async (req: Request, res: Response) => {
       handle: user.username,
     });
 
+    const token = Token.create({
+      userId: user._id,
+      token: randomBytes(10).toString("hex"),
+    });
+
     user.activeProfile = profile._id;
     await user.save();
     res.status(201).json({
       status: true,
       message: "User registered sucessfully",
+      token
     });
   } else {
     throw new Error("❗ Invalid User!");
@@ -122,7 +129,7 @@ export const getAccessToken = async (req: Request, res: Response) => {
       id: user._id,
       isAdmin: user.isAdmin,
       accessToken,
-      refreshToken
+      refreshToken,
     });
   } else {
     res.status(401);
