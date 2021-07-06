@@ -8,6 +8,8 @@ export interface IUser extends Document {
   oauthId?: string;
   isAdmin?: boolean;
   tokenId: string;
+  isActive: boolean;
+  isVerified: boolean;
   activeProfile: string;
   matchPassword: (password: string) => string;
 }
