@@ -7,6 +7,7 @@ import {
   generateRefreshToken,
 } from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
+import { mailUser } from "../utils/emailUser";
 import {
   validateLoginInput,
   validateRegisterInput,
@@ -85,17 +86,19 @@ export const registerUser = async (req: Request, res: Response) => {
       handle: user.username,
     });
 
-    const token = Token.create({
+    const token = await Token.create({
       userId: user._id,
       token: randomBytes(10).toString("hex"),
     });
 
     user.activeProfile = profile._id;
     await user.save();
+
+    const info = await mailUser(username, email, token._id);
+
     res.status(201).json({
       status: true,
-      message: "User registered sucessfully",
-      token
+      message: info,
     });
   } else {
     throw new Error("❗ Invalid User!");
