@@ -12,6 +12,11 @@ const TokenSchema = new Schema<IToken>({
     required: true,
     default: "",
   },
+  createdAt: {
+    type: Date,
+    expires: "2m",
+    default: Date.now,
+  },
 });
 
 export const Token = model<IToken>("Token", TokenSchema);
