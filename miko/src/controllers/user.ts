@@ -139,3 +139,21 @@ export const getAccessToken = async (req: Request, res: Response) => {
     throw new Error("❗ Invalid User");
   }
 };
+
+export const verifyEmail = async (req: Request, res: Response) => {
+  const { token } = req.params;
+
+  const userToken = await Token.findById(token);
+
+  if (userToken) {
+    const user = await User.findById(userToken.userId);
+
+    if (user) {
+      user.isActive = true;
+      await user.save();
+    }
+  } else {
+    res.status(401).json({ status: false, message: "Token has expired" });
+    throw new Error("❗ Token has expired");
+  }
+};
