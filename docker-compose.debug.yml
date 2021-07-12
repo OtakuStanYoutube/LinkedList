@@ -28,17 +28,6 @@ services:
     networks:
       - linkedlist-app
 
-  mailhog:
-    image: mailhog/mailhog:latest
-    ports:
-      - 8025:8025
-      - 1025:1025
-    environment: 
-      MH_STORAGE: maildir
-      MH_MAILDIR_PATH: /tmp
-    volumes: 
-      - maildir:/tmp
-
 networks:
   linkedlist-app:
     driver: bridge
@@ -46,4 +35,3 @@ networks:
 volumes:
   redis-data:
     driver: local
-  maildir: {}
