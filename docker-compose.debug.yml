@@ -15,7 +15,6 @@ services:
       - 5000:5000
     links: 
       - redis
-      - mailhog
     networks:
       - linkedlist-app
 
