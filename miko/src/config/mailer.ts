@@ -1,11 +1,10 @@
 import mailer from "nodemailer";
 
 export const transporter = mailer.createTransport({
-  host: "127.0.0.1",
-  port: 1025,
+  service: 'SendinBlue',
   secure: false,
   auth: {
-    user: "user",
-    pass: "password",
+    user: process.env.SENDINBLUE_USER,
+    pass: process.env.SENDINBLUE_PASSWORD,
   },
 });
