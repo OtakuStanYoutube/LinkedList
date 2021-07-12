@@ -16,6 +16,8 @@ export const mailUser = async (
 
   const info = await transporter.sendMail(mailOptions, (error, message) => {
     if (error) {
+      console.log(error);
+
       return "Technical Issue!, There was some error in sending the email. Please click on resend for verify your Email.";
     } else {
       console.log(message);
