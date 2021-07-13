@@ -1,5 +1,5 @@
 # Linked List
-The one stop solution to managing all your social media links on a single platform.
+The one stop solution to managing all your social media influence on a single platform.
 
 ## 📃 About The Folder
 
