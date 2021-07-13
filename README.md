@@ -40,9 +40,9 @@ The folders are named after Hololive Characters
 
 <div>
 
-[<img src="https://img.shields.io/badge/-Next-000000?style=for-the-badge&labelColor=black&logo=nextdotjs&logoColor=#000000">](https://nextjs.org/)
+[<img src="https://img.shields.io/badge/-Next-000000?style=for-the-badge&labelColor=white&logo=nextdotjs&logoColor=black">](https://nextjs.org/)
 
-[<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white">](https://redux.js.org/)
+[<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&labelColor=black&logo=redux&logoColor=white">](https://redux.js.org/)
 
 [<img src="https://img.shields.io/badge/-Svelte-FD5602?style=for-the-badge&labelColor=black&logo=svelte&logoColor=FD5602">](https://svelte.dev/)
 
@@ -54,7 +54,7 @@ The folders are named after Hololive Characters
 
 [<img src="https://img.shields.io/badge/-MongoDB-3fa037?style=for-the-badge&labelColor=black&logo=mongodb&logoColor=3fa037">](https://www.mongodb.com/1)
 
-[<img src="https://img.shields.io/badge/redis-CC0000.svg?&style=for-the-badge&logo=redis&logoColor=white">](https://redis.io/)
+[<img src="https://img.shields.io/badge/redis-CC0000.svg?&style=for-the-badge&labelColor=black&logo=redis&logoColor=white">](https://redis.io/)
 
 [<img src="https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc">](https://www.typescriptlang.org/)
 
