@@ -40,7 +40,7 @@ The folders are named after Hololive Characters
 
 <div>
 
-[<img src="https://img.shields.io/badge/-Next-000000?style=for-the-badge&labelColor=white&logo=nextdotjs&logoColor=black">](https://nextjs.org/)
+[<img src="https://img.shields.io/badge/-Next-FFFFFF?style=for-the-badge&labelColor=black&logo=nextdotjs&logoColor=white">](https://nextjs.org/)
 
 [<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&labelColor=black&logo=redux&logoColor=white">](https://redux.js.org/)
 
