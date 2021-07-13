@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Linked List
+The one stop solution to managing all your social media influence on a single platform.
 
-## Getting Started
+## 📃 About The Folder
 
-First, run the development server:
+This Folder is called Ayame named after Hololive character Nakiri Ayame. This folder contains the official Frontend Dashboard for Linked List.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 🧩 Getting Started
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To get a local copy up and running follow these simple steps.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Starting the development client server 📡
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+#### Prerequisites
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Make sure you have Node and TypeScript installed on your machine.
 
-## Learn More
+> **_NOTE:_**
+>
+>_The project was made with node version 14.15.1
 
-To learn more about Next.js, take a look at the following resources:
+#### Steps to start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Add environment file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+      `.env` file
 
-## Deploy on Vercel
+      ```env
+      NODE_ENV=development
+      NEXT_APP_PRODUCTION_API_ENDPOINT = "production_url"
+      NEXT_APP_DEVELOPMENT_API_ENDPOINT = "http://localhost:5000"
+      ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. To install all the dependencies run the following command.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+      ```sh
+      yarn install
+      ```
+
+3. Run the following command in to start server.
+
+      ```sh
+      yarn dev
+      ```
+
+5. Your server should be running on port [3000](http://localhost:3000).
+
+## 🔐 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
