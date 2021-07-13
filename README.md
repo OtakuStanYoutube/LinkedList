@@ -1,5 +1,5 @@
 # LinkedList
-The one stop solution to managing all your social media influence on a single platform
+The one stop solution to managing all your social media influence on a single platform.
 
 ## About 
 Ever felt the need for adding more links to your Social Media bio? Ever fely the need for a single platform to showcase all your work? Well, LinkList was made just for that! It gathers all of your social links and proof of work into a single page that is easy to navigate. LinkedList is an open-source alternative to paid, limited tools like [Linktree](https://linktr.ee/).
