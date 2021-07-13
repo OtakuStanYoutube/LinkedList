@@ -137,14 +137,14 @@ Make sure you have Node and TypeScript installed on your machine.
 
       ```env
       NODE_ENV = "development"
-      REACT_APP_PRODUCTION_API_ENDPOINT = "production_url"
-      REACT_APP_DEVELOPMENT_API_ENDPOINT = "http://localhost:5000"
+      NEXT_APP_PRODUCTION_API_ENDPOINT = "production_url"
+      NEXT_APP_DEVELOPMENT_API_ENDPOINT = "http://localhost:5000"
       ```
 
 2. To install all the dependencies run the following command in Frontend directory.
 
       ```sh
-      yarn add .
+      yarn install
       ```
 
 3. Run the following command in the Frontend directory to start Svelte app.
