@@ -55,7 +55,7 @@ Make sure you have Node and TypeScript installed on your machine.
 2. To install all the dependencies run the following command.
 
       ```sh
-      yarn add .
+      yarn install
       ```
 
 3. Run the following command in to buid the dist directory.
