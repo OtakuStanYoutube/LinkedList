@@ -1,18 +1,19 @@
 # LinkedList
-The one stop solution to managing all your social media links on a single platform
+The one stop solution to managing all your social media influence on a single platform
 
 ## About 
-Ever felt the need for adding more links to your Social Media bio? LinkList was made just for that! It gathers all of your social links into one page that is easy to navigate. LinkedList is an open-source alternative to paid, limited tools like [Linktree](https://linktr.ee/).
+Ever felt the need for adding more links to your Social Media bio? Ever fely the need for a single platform to showcase all your work? Well, LinkList was made just for that! It gathers all of your social links and proof of work into a single page that is easy to navigate. LinkedList is an open-source alternative to paid, limited tools like [Linktree](https://linktr.ee/).
 
 ## Why use LinkedList?
 
-Social Media like Instagram, Twitter, e.t.c does not provide support for multiple clickable links on post captions or on your bio. To help you overcome this limitation, tools like Linktree were made, providing users the ability to use their one stop URL field to direct viewers to multiple destinations.
+Social Media like Instagram, Twitter, e.t.c neither provides support for multiple clickable links nor a place to show all your work to your audience on post captions or on your bio. To help you overcome this limitation, tools like Linktree were made, providing users the ability to use their one stop URL field to direct viewers to multiple destinations.
 
-While these tools are simple by design, we consider them to be more expensive and less customizable than they should. Using Linktree as an example is very limiting ike the free version doesn't even provide a proper theme and UI customization options.
+While these tools are simple by design, they tend to be a more expensive and less customizable solution than they should. Using Linktree as an example is very limiting like the free version doesn't even provide you with proper theme and UI customization options.
 
 ## Features
 
 * [ ] Display all your social media links in a single place
+* [ ] Show all your work to your audience
 * [ ] Custom Logo
 * [ ] Custom Favicon
 * [ ] Customizable Link tabs
@@ -31,19 +32,28 @@ The folders are named after Hololive Characters
 | Codebase              |      Description          |
 | :-------------------- | :-----------------------: |
 | [Miko](miko)          |      Backend API          |
-| [Rushia](rushia)      |      Svelte Frontend      |
+| [Rushia](rushia)      |  Svelte Pre-Registration  |
+| [Ayame](ayame)        |    Next js Frontend       |
 
 ### 🏗️ Built With
 
 <div>
 
+[<img src="https://img.shields.io/badge/-Next-000000?style=for-the-badge&labelColor=black&logo=nextdotjs&logoColor=#000000">](https://nextjs.org/)
+
+[<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white">](https://redux.js.org/)
+
 [<img src="https://img.shields.io/badge/-Svelte-FD5602?style=for-the-badge&labelColor=black&logo=svelte&logoColor=FD5602">](https://svelte.dev/)
 
 [<img src="https://img.shields.io/badge/-SCSS-cc6699?style=for-the-badge&labelColor=black&logo=sass&logoColor=cc6699">](https://sass-lang.com/)
 
+[<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&labelColor=black&logo=tailwind-css&logoColor=white" >](https://tailwindcss.com/)
+
 [<img src="https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A">](https://nodejs.org/en/)
 
 [<img src="https://img.shields.io/badge/-MongoDB-3fa037?style=for-the-badge&labelColor=black&logo=mongodb&logoColor=3fa037">](https://www.mongodb.com/1)
+
+[<img src="https://img.shields.io/badge/redis-CC0000.svg?&style=for-the-badge&logo=redis&logoColor=white">](https://redis.io/)
 
 [<img src="https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc">](https://www.typescriptlang.org/)
 
@@ -70,7 +80,7 @@ Make sure you have Docker and docker-compose installed on your machine.
       docker-compose up --build
       ```
 
-3. Open <http://localhost:8080> to view it in the browser.
+3. Open <http://localhost:5000> to view it in the browser.
 
 ### Starting the development server without docker 📡
 
