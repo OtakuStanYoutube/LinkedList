@@ -34,6 +34,7 @@ The folders are named after Hololive Characters
 | [Miko](miko)          |      Backend API          |
 | [Rushia](rushia)      |  Svelte Pre-Registration  |
 | [Ayame](ayame)        |    Next js Frontend       |
+| [Mio](mio)            |      Landing Page         |
 
 ### 🏗️ Built With
 
