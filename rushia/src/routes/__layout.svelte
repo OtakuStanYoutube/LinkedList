@@ -1,28 +1,54 @@
-<script lang="ts">
+<script>
   import "../app.scss";
-  import Navigation from "../Components/Shared/Nav.svelte";
 </script>
 
-<div class="header">
-  <div class="logo_container">LinkList</div>
-  <Navigation />
-</div>
-<slot />
+<main class="main">
+  <nav>
+    <h3><span class="pp">Linked</span>List</h3>
+    <section class="social">
+      <img src="/icon/github.png" alt="github" />
+      <img src="/icon/twitter.png" alt="Twitter" />
+    </section>
+  </nav>
+  <slot />
+</main>
 
 <style lang="scss">
-  .header {
+  .main {
+    background-color: var(--bg-color);
     display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-    background-color: var(--main-fg-color);
-    color: var(--main-font-color);
-    padding: 0.2em 1em;
+    grid-template-rows: 10% auto;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 
-    .logo_container {
-      font-size: 25px;
-      font-weight: 700;
-      letter-spacing: -5%;
-      margin-left: 1em;
+    nav {
+      margin-top: 4em;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        margin-left: 4em;
+        font-size: 1.5em;
+        font-weight: 600;
+        .pp {
+          color: #944cbf;
+        }
+      }
+
+      .social {
+        margin-right: 6em;
+        display: flex;
+        & > * {
+          width: 18px;
+          height: 18px;
+          margin-left: 1em;
+        }
+      }
     }
   }
 </style>

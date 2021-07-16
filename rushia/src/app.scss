@@ -1,8 +1,13 @@
-@use "./Styles/root";
-@use "./Styles/Elements/buttons";
-@use "./Styles/Elements/InputStyle";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;1,600&display=swap");
 
-body {
-  background-color: var(--main-bg-color);
-  color: var(--main-font-color);
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Open Sans;
+}
+:root {
+  --bg-color: #282828;
 }
