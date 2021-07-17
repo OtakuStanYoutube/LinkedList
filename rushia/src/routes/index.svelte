@@ -31,6 +31,12 @@
     border-radius: 20px;
     color: white;
 
+    @media only screen and (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+      width: 80vw;
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -47,6 +53,14 @@
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: destination-out;
       mask-composite: exclude;
+
+      @media only screen and (max-width: 500px) {
+        background: linear-gradient(
+          to bottom,
+          rgb(59, 35, 167, 0.4) 30%,
+          rgb(164, 48, 94, 0.4) 60%
+        );
+      }
     }
 
     .right {
@@ -54,10 +68,22 @@
       position: relative;
       width: clamp(200px, 40%, 400px);
       margin: 0 auto;
+
+      @media only screen and (max-width: 500px) {
+        width: 100%;
+        display: grid;
+        align-items: center;
+      }
       img {
         width: clamp(5em, 30vw, 30em);
         margin-top: 5em;
         margin-right: 3em;
+
+        @media only screen and (max-width: 500px) {
+          // display: block;
+          margin: 0 auto;
+          width: clamp(10em, 80vw, 18em);
+        }
       }
       &::before {
         content: "";
@@ -79,20 +105,25 @@
       gap: 1.5em;
       width: clamp(200px, 40%, 500px);
       margin: 0 auto;
+
+      @media only screen and (max-width: 500px) {
+        gap: 0.5em;
+        padding: 2em 0em;
+      }
       .head-line {
         margin: 0 auto;
         // width: clamp(1em, 100%, 10em);
         // margin-left: 2em;
         font-style: normal;
         font-weight: 600;
-        font-size: clamp(1.5rem, 2.5vw, 3rem);
+        font-size: clamp(1.2rem, 2.5vw, 3rem);
         line-height: 112%;
       }
 
       .form {
         position: relative;
         .lbl {
-          font-size: clamp(0.5rem, 1.5vw, 1.7rem);
+          font-size: clamp(0.8rem, 1.5vw, 1.7rem);
           line-height: 112%;
           letter-spacing: 0.105em;
           color: #b055e1;
@@ -104,7 +135,7 @@
           background: #353339;
           border: clamp(1px, 0.15em, 2px) solid #944cbf;
           padding: 0.7em 1em;
-          font-size: clamp(0.3rem, 1vw, 1.5rem);
+          font-size: clamp(0.5rem, 1vw, 1.5rem);
           // box-sizing: border-box;
           margin-top: 0.7em;
           box-shadow: 10px 30px 100px 10px #0000006b;
@@ -121,7 +152,7 @@
           border: none;
           font-size: inherit;
           width: clamp(2em, 3.5vw, 5em);
-          height: clamp(1em, 3vw, 4.5em);
+          height: clamp(1.5em, 3vw, 4.5em);
           // padding: clamp(0.85em, 1vw, 0.1em) 1.5em;
           background: #944cbf;
           border-radius: 100px;

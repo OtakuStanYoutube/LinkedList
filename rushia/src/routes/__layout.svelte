@@ -38,6 +38,10 @@
         .pp {
           color: #944cbf;
         }
+
+        @media only screen and (max-width: 500px) {
+          margin: 0 auto;
+        }
       }
 
       .social {
@@ -47,6 +51,10 @@
           width: 18px;
           height: 18px;
           margin-left: 1em;
+        }
+
+        @media only screen and (max-width: 500px) {
+          display: none;
         }
       }
     }
