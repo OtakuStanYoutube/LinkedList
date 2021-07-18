@@ -1,16 +1,15 @@
-import styles from "../../styles/Home.module.scss";
-
 import Hello from "../components/Hello";
 import Layout from "../components/Layout";
+import { Wrapper } from "../components/Wrapper";
 
 export default function Index() {
   return (
     <>
       <div>
         <Layout title="Home">
-          <div className={styles.container}>
+          <Wrapper>
             <Hello />
-          </div>
+          </Wrapper>
         </Layout>
       </div>
     </>
