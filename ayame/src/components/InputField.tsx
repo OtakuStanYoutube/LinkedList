@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, FC } from "react";
 import { useField } from "formik";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -7,7 +7,7 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   textarea?: boolean;
 };
 
-export const InputField: React.FC<InputFieldProps> = ({
+export const InputField: FC<InputFieldProps> = ({
   label,
   textarea,
   size: _,
