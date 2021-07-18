@@ -7,7 +7,7 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   textarea?: boolean;
 };
 
-export const InputField: FC<InputFieldProps> = ({
+const InputField: FC<InputFieldProps> = ({
   label,
   textarea,
   size: _,
@@ -33,3 +33,5 @@ export const InputField: FC<InputFieldProps> = ({
     </div>
   );
 };
+
+export default InputField;
