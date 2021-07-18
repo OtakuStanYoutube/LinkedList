@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Head from "next/head";
 
 type LayoutProps = {
   title: string;
-  description: string;
-  keywords: string;
+  description?: string;
+  keywords?: string;
+  children: ReactNode,
 };
 
 const Layout: FC<LayoutProps> = ({
@@ -26,9 +27,9 @@ const Layout: FC<LayoutProps> = ({
 };
 
 Layout.defaultProps = {
-  title: "DJ Events | Find the hottest parties",
-  description: "Find the latest DJ and other musical events",
-  keywords: "music, dj, edm, events",
+  title: "LinkedList",
+  description: "A single platform for all your work",
+  keywords: "social media, youtuber, social media influencer",
 };
 
 export default Layout;
