@@ -1,18 +1,54 @@
-import styles from "../../styles/Home.module.scss";
+import { FC } from "react";
+import { Formik, Form } from "formik";
 
-import Hello from "../components/Hello";
+import { useRouter } from "next/router";
+import NextLink from "next/link";
+
 import Layout from "../components/Layout";
+import { Wrapper } from "../components/Wrapper";
+import InputField from "../components/InputField";
 
-export default function LoginPage() {
+const LoginPage: FC<{}> = ({}) => {
+  const router = useRouter();
   return (
     <>
       <div>
         <Layout title="Login">
-          <div className={styles.container}>
-            <Hello />
-          </div>
+          <Wrapper>
+            <Formik
+              initialValues={{ usernameOrEmail: "", password: "" }}
+              onSubmit={async (values, { setErrors }) => {
+                console.log(values);
+              }}
+            >
+              {({ isSubmitting }) => (
+                <Form>
+                  <InputField
+                    name="usernameOrEmail"
+                    placeholder="username or email"
+                    label="Username or Email"
+                  />
+                  <InputField
+                    name="password"
+                    placeholder="password"
+                    label="Password"
+                    type="password"
+                  />
+                  <NextLink href="#">forgot password?</NextLink>
+                  <button
+                    className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                    type="button"
+                    disabled={isSubmitting}
+                  >
+                    login
+                  </button>
+                </Form>
+              )}
+            </Formik>
+          </Wrapper>
         </Layout>
       </div>
     </>
   );
-}
+};
+export default LoginPage;
