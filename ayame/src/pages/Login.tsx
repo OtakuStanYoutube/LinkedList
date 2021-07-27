@@ -4,6 +4,9 @@ import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 
+//MUI Components
+// import { Button } from "@material-ui/core";
+
 import Layout from "../components/Layout";
 import { Wrapper } from "../components/Wrapper";
 import InputField from "../components/InputField";
@@ -26,7 +29,7 @@ const LoginPage: FC<{}> = ({}) => {
                   <InputField
                     name="email"
                     placeholder="lolilover@hentaihaven.org"
-                    label="Username or Email"
+                    label="Email"
                   />
                   <InputField
                     name="password"
@@ -37,8 +40,8 @@ const LoginPage: FC<{}> = ({}) => {
                   <NextLink href="#">forgot password?</NextLink>
                   <button
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                    type="button"
                     disabled={isSubmitting}
+                    type="submit"
                   >
                     login
                   </button>
