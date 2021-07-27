@@ -16,7 +16,7 @@ const LoginPage: FC<{}> = ({}) => {
         <Layout title="Login">
           <Wrapper>
             <Formik
-              initialValues={{ usernameOrEmail: "", password: "" }}
+              initialValues={{ email: "", password: "" }}
               onSubmit={async (values, { setErrors }) => {
                 console.log(values);
               }}
@@ -24,13 +24,13 @@ const LoginPage: FC<{}> = ({}) => {
               {({ isSubmitting }) => (
                 <Form>
                   <InputField
-                    name="usernameOrEmail"
-                    placeholder="username or email"
+                    name="email"
+                    placeholder="lolilover@hentaihaven.org"
                     label="Username or Email"
                   />
                   <InputField
                     name="password"
-                    placeholder="password"
+                    placeholder="*******"
                     label="Password"
                     type="password"
                   />
