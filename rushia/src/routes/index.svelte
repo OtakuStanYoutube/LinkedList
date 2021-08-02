@@ -1,19 +1,54 @@
+<img src="onebg.svg" class="bg-svg" alt="" />
+<img src="elp.png" class="elps" alt="" />
 <section class="container">
   <section class="left">
-    <h1 class="head-line">Get all your work orginised in a single place</h1>
+    <h1 class="head-line">A Single Platform For All Your Work</h1>
+    <h3 class="sub-head-line">
+      Build your LinkedList profile and showcase your proof of work, experience
+      and online presence to your audience, all at a single place
+    </h3>
     <form class="form">
-      <label name="email" class="lbl">Pre-Register Today</label>
+      <label name="email" class="lbl"
+        >Pre-register today.<u>it's free!!</u></label
+      >
       <input type="email" name="email" class="form-email" />
       <!-- <input type="submit" class="btn" value="Go" /> -->
       <button class="btn"><span class="material-icons"> send </span></button>
     </form>
   </section>
   <section class="right">
-    <img src="preview-ils.svg" alt="illustration" />
+    <img src="utkarsh.gif" alt="illustration" />
   </section>
 </section>
 
 <style lang="scss">
+  .bg-svg {
+    position: absolute;
+    top: 0;
+    left: -100px;
+    width: 100vw;
+    height: 100vh;
+
+    @media only screen and (max-width: 500px) {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+    }
+  }
+
+  .elps {
+    position: absolute;
+    top: 200px;
+    right: 0vw;
+    // width: 200px;
+    // height: 200px;
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+
   .container {
     display: flex;
     align-self: flex-start;
@@ -23,44 +58,14 @@
     align-items: center;
     flex-direction: row;
     z-index: 0;
-    width: clamp(500px, 70vw, 1400px);
+    width: clamp(500px, 75vw, 1400px);
     height: clamp(100px, 70vh, 800px);
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.116);
-    background: rgba(53, 51, 57, 0.26);
-    // backdrop-filter: blur(100px);
-    border-radius: 20px;
     color: white;
 
     @media only screen and (max-width: 500px) {
       display: flex;
       flex-direction: column;
-      width: 80vw;
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      padding: clamp(0.5px, 0.01vw, 5px);
-      border-radius: inherit;
-      background: linear-gradient(
-        to right,
-        rgb(59, 35, 167, 0.4) 30%,
-        rgb(164, 48, 94, 0.4) 60%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
-
-      @media only screen and (max-width: 500px) {
-        background: linear-gradient(
-          to bottom,
-          rgb(59, 35, 167, 0.4) 30%,
-          rgb(164, 48, 94, 0.4) 60%
-        );
-      }
+      width: 100vw;
     }
 
     .right {
@@ -75,27 +80,16 @@
         align-items: center;
       }
       img {
-        width: clamp(5em, 30vw, 30em);
+        width: clamp(10em, 40vw, 50em);
         margin-top: 5em;
         margin-right: 3em;
 
         @media only screen and (max-width: 500px) {
           // display: block;
           margin: 0 auto;
-          width: clamp(10em, 80vw, 18em);
+          // width: clamp(10em, 80vw, 30em);
+          width: 80vw;
         }
-      }
-      &::before {
-        content: "";
-        position: absolute;
-        top: 100px;
-        left: -30px;
-        width: 200px;
-        height: 280px;
-        z-index: -20;
-        filter: blur(100px);
-        background-color: #760d35;
-        border-radius: 100%;
       }
     }
 
@@ -107,8 +101,11 @@
       margin: 0 auto;
 
       @media only screen and (max-width: 500px) {
-        gap: 0.5em;
-        padding: 2em 0em;
+        gap: 0.7em;
+        width: 80%;
+        margin: 0 auto;
+        align-self: stretch;
+        // padding: 2em 0em;
       }
       .head-line {
         margin: 0 auto;
@@ -116,23 +113,47 @@
         // margin-left: 2em;
         font-style: normal;
         font-weight: 600;
-        font-size: clamp(1.2rem, 2.5vw, 3rem);
+        font-size: clamp(1.5rem, 2.5vw, 4rem);
         line-height: 112%;
+
+        @media only screen and (max-width: 500px) {
+          font-size: 2rem;
+        }
+      }
+
+      .sub-head-line {
+        margin: 0 auto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: clamp(0.9rem, 1.1vw, 1.3rem);
+        line-height: 112%;
+
+        @media only screen and (max-width: 500px) {
+          font-size: 0.8rem;
+        }
       }
 
       .form {
         position: relative;
         .lbl {
           font-size: clamp(0.8rem, 1.5vw, 1.7rem);
+          font-weight: 300;
           line-height: 112%;
           letter-spacing: 0.105em;
           color: #b055e1;
+
+          u {
+            border: white;
+            font-weight: 600;
+            border-radius: 40px;
+            padding: 0.2em 0.5em;
+          }
         }
 
         .form-email {
           width: 100%;
           color: white;
-          background: #353339;
+          background: #000000;
           border: clamp(1px, 0.15em, 2px) solid #944cbf;
           padding: 0.7em 1em;
           font-size: clamp(0.5rem, 1vw, 1.5rem);
@@ -162,19 +183,6 @@
             color: white;
           }
         }
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        width: 200px;
-        height: 280px;
-        z-index: -20;
-        filter: blur(100px);
-        top: -120px;
-        left: -20px;
-        background-color: #20115f;
-        border-radius: 100%;
       }
     }
   }

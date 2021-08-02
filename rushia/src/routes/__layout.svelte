@@ -15,7 +15,6 @@
 
 <style lang="scss">
   .main {
-    background-color: var(--bg-color);
     display: grid;
     grid-template-rows: 10% auto;
     align-items: center;

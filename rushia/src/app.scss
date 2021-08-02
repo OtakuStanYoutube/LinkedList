@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;1,600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 *,
 ::after,
 ::before {
@@ -9,5 +8,10 @@
   font-family: Open Sans;
 }
 :root {
-  --bg-color: #282828;
+  --bg-color: #000000;
+}
+
+body {
+  background-color: var(--bg-color);
+  overflow: hidden;
 }
