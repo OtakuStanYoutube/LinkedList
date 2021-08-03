@@ -17,7 +17,14 @@
     </form>
   </section>
   <section class="right">
-    <img src="utkarsh.gif" alt="illustration" />
+    <lottie-player
+      class="lottie-player"
+      src="linkedlist.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay
+    />
   </section>
 </section>
 
@@ -79,7 +86,7 @@
         display: grid;
         align-items: center;
       }
-      img {
+      .lottie-player {
         width: clamp(10em, 40vw, 50em);
         margin-top: 5em;
         margin-right: 3em;
@@ -155,7 +162,8 @@
           color: white;
           background: #000000;
           border: clamp(1px, 0.15em, 2px) solid #944cbf;
-          padding: 0.7em 1em;
+          // padding: 0.7em 1em;
+          padding: 0.7em 5em 0.7em 1em;
           font-size: clamp(0.5rem, 1vw, 1.5rem);
           // box-sizing: border-box;
           margin-top: 0.7em;
