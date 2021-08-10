@@ -1,4 +1,10 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# LinkedList
+
+The one stop solution to managing all your social media links on a single
+platform.
+
+## About
+This is the pre-registration page for LinkedList to gain new users for LinkedList project. This forlder is named rushia after the Hololive character Uruha Rushia.
 
 ---
 
@@ -87,19 +93,4 @@ Then, from within your project folder:
 ```bash
 cd public
 vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
 ```
