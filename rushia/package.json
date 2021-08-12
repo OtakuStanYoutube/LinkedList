@@ -20,6 +20,7 @@
   "dependencies": {
     "@rollup/plugin-replace": "^3.0.0",
     "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
     "node-sass": "^6.0.1",
     "sirv-cli": "^1.0.0",
     "svelte-preprocess": "^4.7.4"
