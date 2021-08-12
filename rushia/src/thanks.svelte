@@ -12,7 +12,7 @@
   <section class="left">
     <h1 class="head-line">A Single Platform For All Your Work</h1>
     <h3 class="sub-head-line">
-      Thanks for registering with us, You will receive a conforrmation email on {email}
+      Thanks for registering with us, You will receive a confirmation email on {email}
     </h3>
   </section>
 </section>
