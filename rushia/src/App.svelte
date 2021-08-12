@@ -1,11 +1,16 @@
 <script>
+  import axios from "axios";
   import Layout from "./layout.svelte";
   import Thanks from "./thanks.svelte";
   let email;
   let isSubmited = false;
 
-  function emailSubmit() {
+  async function emailSubmit() {
     console.log(email);
+    const data = {email}
+    const baseUrl = process.env.BASE_URL
+    console.log(baseUrl);
+    // const response = await axios.post("/api/v1/registrations", data);
     isSubmited = true;
   }
 </script>
