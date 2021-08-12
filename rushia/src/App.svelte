@@ -1,52 +1,58 @@
 <script>
   import Layout from "./layout.svelte";
-  export let email;
+  import Thanks from "./thanks.svelte";
+  let email;
+  let isSubmited = false;
 
-  function emailSubmit(e) {
-    e.preventDefault();
+  function emailSubmit() {
     console.log(email);
+    isSubmited = true;
   }
 </script>
 
 <Layout>
-  <img src="onebg.svg" class="bg-svg" alt="" />
-  <img src="elp.png" class="elps" alt="" />
-  <section class="container">
-    <section class="left">
-      <h1 class="head-line">A Single Platform For All Your Work</h1>
-      <h3 class="sub-head-line">
-        Build your LinkedList profile and showcase your proof of work,
-        experience and online presence to your audience, all at a single place
-      </h3>
-      <form class="form" action="action">
-        <label for="email" name="email" class="lbl">
-          Pre-register today.<u>it's free!!</u>
-        </label>
-        <div class="inputs">
-          <input
-            bind:value={email}
-            type="email"
-            name="email"
-            placeholder="Enter Your Email Address"
-            class="form-email"
-          />
-          <button class="btn" on:click={emailSubmit}>
-            <span class="material-icons"> send </span>
-          </button>
-        </div>
-      </form>
+  {#if isSubmited}
+    <Thanks {email} />
+  {:else}
+    <img src="onebg.svg" class="bg-svg" alt="" />
+    <img src="elp.png" class="elps" alt="" />
+    <section class="container">
+      <section class="left">
+        <h1 class="head-line">A Single Platform For All Your Work</h1>
+        <h3 class="sub-head-line">
+          Build your LinkedList profile and showcase your proof of work,
+          experience and online presence to your audience, all at a single place
+        </h3>
+        <form class="form">
+          <label for="email" name="email" class="lbl">
+            Pre-register today.<u>it's free!!</u>
+          </label>
+          <div class="inputs">
+            <input
+              bind:value={email}
+              type="email"
+              name="email"
+              placeholder="Enter Your Email Address"
+              class="form-email"
+            />
+            <button class="btn" on:click|preventDefault={emailSubmit}>
+              <span class="material-icons"> send </span>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="right">
+        <lottie-player
+          class="lottie-player"
+          src="linkedlist.json"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay
+        />
+      </section>
     </section>
-    <section class="right">
-      <lottie-player
-        class="lottie-player"
-        src="linkedlist.json"
-        background="transparent"
-        speed="1"
-        loop
-        autoplay
-      />
-    </section>
-  </section>
+  {/if}
 </Layout>
 
 <style lang="scss">
