@@ -8,10 +8,10 @@
   async function emailSubmit() {
     console.log(email);
     const data = {email}
-    // const baseUrl = __myapp.env.BASE_URL
-    console.log(process.env.isProd)
+    const baseUrl = "http://localhost:8000"
+    // console.log(process.env.BASE_URL);
     // console.log(baseUrl);
-    // const response = await axios.post("/api/v1/registrations", data);
+    const response = await axios.post(`${baseUrl}/api/v1/registrations/create`, data);
     isSubmited = true;
   }
 </script>
