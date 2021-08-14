@@ -4,15 +4,24 @@
   import Thanks from "./thanks.svelte";
   let email;
   let isSubmited = false;
+  let error = ""
 
   async function emailSubmit() {
     console.log(email);
-    const data = {email}
+    const userData = {email}
     const baseUrl = "http://localhost:8000"
     // console.log(process.env.BASE_URL);
     // console.log(baseUrl);
-    const response = await axios.post(`${baseUrl}/api/v1/registrations/create`, data);
-    isSubmited = true;
+    try {
+      const response = await axios.post(`${baseUrl}/api/v1/registrations/create`, userData);
+      let { data } = response;
+      console.log(data);
+      isSubmited = data.status;
+    } catch (error) {
+      const { data } = error.response;
+      isSubmited = data.status;
+      error = data.message;
+    }
   }
 </script>
 
