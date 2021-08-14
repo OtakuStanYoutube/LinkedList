@@ -6,7 +6,6 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
 import preprocess from "svelte-preprocess";
-import { config } from 'dotenv';
 
 
 const production = !process.env.ROLLUP_WATCH;
@@ -48,8 +47,7 @@ export default {
     replace({
       process: JSON.stringify({
         env: {
-          isProd: production,
-          ...config().parsed 
+          BASE_URL: process.env.BASE_URL
         },
       }),
     }),
