@@ -8,15 +8,9 @@
 
   async function emailSubmit() {
     console.log(email);
-<<<<<<< HEAD
-    const data = { email };
-    // const baseUrl = __myapp.env.BASE_URL
-    console.log(process.env.isProd);
-=======
     const userData = {email}
     const baseUrl = "http://localhost:8000"
     // console.log(process.env.BASE_URL);
->>>>>>> 54712d8eef3f26507382b2391180564205fa6f01
     // console.log(baseUrl);
     try {
       const response = await axios.post(`${baseUrl}/api/v1/registrations/create`, userData);
