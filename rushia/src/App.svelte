@@ -15,7 +15,6 @@
     try {
       const response = await axios.post(`${baseUrl}/api/v1/registrations/create`, userData);
       let { data } = response;
-      console.log(data);
       isSubmited = data.status;
     } catch (error) {
       const { data } = error.response;
