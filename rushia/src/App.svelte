@@ -28,6 +28,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>LinkedList Pre-Registration</title>
+</svelte:head>
+
 <Layout>
   {#if isSubmited}
     <Thanks {email} />
