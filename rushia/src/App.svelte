@@ -6,10 +6,10 @@
   let isSubmited = false;
 
   $: err = "";
-  console.log(err);
+  // console.log(err);
 
   async function emailSubmit() {
-    console.log(email);
+    // console.log(email);
     const userData = { email };
     const baseUrl = myApp["env"]["BASE_URL"];
     try {
@@ -23,7 +23,7 @@
       const { data } = error.response;
       isSubmited = data.status;
       err = data.message;
-      console.log(err);
+      // console.log(err);
     }
   }
 </script>
