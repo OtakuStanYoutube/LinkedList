@@ -11,7 +11,7 @@
   async function emailSubmit() {
     console.log(email);
     const userData = { email };
-    const baseUrl = "http://194.233.68.129:5000";
+    const baseUrl = myApp["env"]["BASE_URL"];
     try {
       const response = await axios.post(
         `${baseUrl}/api/v1/registrations/create`,
