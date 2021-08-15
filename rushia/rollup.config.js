@@ -47,6 +47,7 @@ export default {
   },
   plugins: [
     replace({
+      preventAssignment: true,
       myApp: JSON.stringify({
         env: {
           BASE_URL: process.env.BASE_URL,
