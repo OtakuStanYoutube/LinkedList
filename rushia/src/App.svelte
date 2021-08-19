@@ -7,7 +7,7 @@
   let isLoading = false;
 
   $: err = "";
-  console.log(err);
+  // console.log(err);
 
   async function emailSubmit(e) {
     isLoading = true;
