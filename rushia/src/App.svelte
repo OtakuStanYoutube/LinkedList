@@ -4,11 +4,14 @@
   import Thanks from "./thanks.svelte";
   let email;
   let isSubmited = false;
+  let isLoading = false;
 
   $: err = "";
   console.log(err);
 
-  async function emailSubmit() {
+  async function emailSubmit(e) {
+    isLoading = true;
+    e.disabled = true;
     console.log(email);
     const userData = { email };
     const baseUrl = myApp["env"]["BASE_URL"];
@@ -19,11 +22,13 @@
       );
       let { data } = response;
       isSubmited = data.status;
+      isLoading = false;
     } catch (error) {
       const { data } = error.response;
       isSubmited = data.status;
       err = data.message;
       console.log(err);
+      isLoading = false;
     }
   }
 </script>
@@ -56,9 +61,18 @@
               name="email"
               placeholder="Enter Your Email Address"
               class="form-email"
+              disabled={isLoading ? "disabled" : ""}
             />
-            <button class="btn" on:click|preventDefault={emailSubmit}>
-              <span class="material-icons"> send </span>
+            <button
+              class="btn"
+              on:click|preventDefault={emailSubmit}
+              disabled={isLoading ? "disabled" : ""}
+            >
+              {#if !isLoading}
+                <span class="material-icons"> send </span>
+              {:else}
+                <img src="loading.svg" alt="Loading" class="loader" />
+              {/if}
             </button>
           </div>
           <span class="error-text">{err}</span>
@@ -79,6 +93,12 @@
 </Layout>
 
 <style lang="scss">
+  .loader {
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+  }
+
   .error-text {
     color: #e43e3e;
   }
@@ -234,9 +254,24 @@
         border: none;
         padding: 0.7em 1em;
         font-size: clamp(0.5rem, 1vw, 1.5rem);
+        border-radius: 100px;
 
         @media only screen and (max-width: 500px) {
           font-size: 0.8rem;
+        }
+
+        &:focus {
+          outline: none;
+          border: 1px solid #ffffff;
+          border-radius: 100px;
+        }
+
+        &::placeholder {
+          color: hsla(0, 0%, 100%, 0.678);
+        }
+
+        &:disabled {
+          background-color: hsla(278, 47%, 52%, 0.466);
         }
       }
 
