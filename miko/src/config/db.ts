@@ -17,8 +17,8 @@ export const connectDB = async () => {
   try {
     const con = await createConnection({
       type: "postgres",
-      // database: __prod__ ? undefined : "linkedlist",
-      // url: __prod__ ? process.env.DATABASE_URL : undefined,
+      database: __prod__ ? undefined : "linkedlist",
+      url: __prod__ ? process.env.DATABASE_URL : undefined,
       entities: [join(__dirname, "./entities/*")],
       migrations: [join(__dirname, "./migrations/*")],
       synchronize: !__prod__,
