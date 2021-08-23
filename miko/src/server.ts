@@ -27,3 +27,5 @@ const main = async () => {
     ),
   );
 };
+
+main();
