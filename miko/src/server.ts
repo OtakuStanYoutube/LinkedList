@@ -15,10 +15,10 @@ const main = async () => {
   connectRedis();
   const conn = await createConn();
 
-  console.log("connected, running migrations now");
+  console.log("connected, running migrations now", conn);
 
-  await conn.runMigrations();
-  console.log("migrations ran");
+  // await conn.runMigrations();
+  // console.log("migrations ran");
 
   app.listen(PORT, () =>
     ready(
