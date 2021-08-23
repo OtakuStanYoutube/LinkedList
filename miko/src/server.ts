@@ -13,12 +13,15 @@ const ENV: string | number = process.env.NODE_ENV || "development";
 const main = async () => {
   connectDB();
   connectRedis();
-  const conn = await createConn();
+  try {
+    const conn = await createConn();
 
-  console.log("connected, running migrations now", conn);
-
-  // await conn.runMigrations();
-  // console.log("migrations ran");
+    console.log("connected, running migrations now", conn);
+    // await conn.runMigrations();
+    // console.log("migrations ran");
+  } catch (error) {
+    console.log("error", error);
+  }
 
   app.listen(PORT, () =>
     ready(
