@@ -12,7 +12,7 @@ export const createConn = () =>
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     // url: __prod__ ? process.env.DATABASE_URL : undefined,
-    entities: [join(__dirname, "./entities/**/*.js")],
+    entities: ["dist/entities/**/*.js"],
     migrations: [join(__dirname, "./migrations/**/*.js")],
     synchronize: !__prod__,
     logging: !__prod__,
