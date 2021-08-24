@@ -14,7 +14,7 @@ const ENV: string | number = process.env.NODE_ENV || "development";
 const main = async () => {
   connectDB();
   connectRedis();
-  console.log("Creating Database entry");
+  console.log("Creating Database entry in");
   try {
     const conn = await createConn();
 
