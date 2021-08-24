@@ -20,7 +20,7 @@ const main = async () => {
 
     console.log("connected, running migrations now", conn);
 
-    const userName = "Lolicon";
+    const userName = "LoliLover";
 
     const user = new User({ userName });
 
