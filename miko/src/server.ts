@@ -6,6 +6,7 @@ import { connectDB } from "./config/db";
 import { createConn } from "./config/createConn";
 import { connectRedis } from "./config/redis_connect";
 import { ready } from "./lib/logs";
+import User from "./entities/User";
 
 const PORT: string | number = process.env.PORT || 5000;
 const ENV: string | number = process.env.NODE_ENV || "development";
@@ -17,6 +18,12 @@ const main = async () => {
     const conn = await createConn();
 
     console.log("connected, running migrations now", conn);
+
+    const userName = "satoshi";
+
+    const user = new User({ userName });
+
+    await user.save();
     // await conn.runMigrations();
     // console.log("migrations ran");
   } catch (error) {
