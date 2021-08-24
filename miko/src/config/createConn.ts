@@ -1,7 +1,7 @@
 import { join } from "path";
 import { createConnection } from "typeorm";
 import { __prod__ } from "../constants";
-import User from "../entities/User";
+// import User from "../entities/User";
 
 export const createConn = () =>
   createConnection({
@@ -12,7 +12,7 @@ export const createConn = () =>
     password: __prod__ ? process.env.DB_PASSWORD : "postgres",
     database: __prod__ ? process.env.DB_DATABASE : "linkedlist",
     url: __prod__ ? process.env.DATABASE_URL : undefined,
-    entities: [User],
+    entities: ["dist/entities/*.js"],
     migrations: [join(__dirname, "./migrations/**/*.js")],
     synchronize: !__prod__,
     logging: !__prod__,
