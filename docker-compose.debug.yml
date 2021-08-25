@@ -50,7 +50,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - ./redis-data:/miko/redis/data
+      - ./redis-data:/data
     networks:
       - linkedlist-app
     restart: unless-stopped
