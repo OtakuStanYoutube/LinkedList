@@ -17,7 +17,7 @@
     const baseUrl = myApp["env"]["BASE_URL"];
     try {
       const response = await axios.post(
-        `${baseUrl}/api/v1/registrations/create`,
+        `${baseUrl}api/v1/registrations/create`,
         userData,
       );
       let { data } = response;
@@ -100,7 +100,7 @@
   }
 
   .error-text {
-    color: #e43e3e;
+    color: #cf6678;
   }
 
   .bg-svg {
@@ -194,7 +194,7 @@
       .head-line {
         margin: 0 auto;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         font-size: clamp(1.5rem, 2.5vw, 4rem);
         line-height: 112%;
 
@@ -206,7 +206,7 @@
       .sub-head-line {
         margin: 0 auto;
         font-style: normal;
-        font-weight: 300;
+        font-weight: 400;
         font-size: clamp(0.9rem, 1.1vw, 1.3rem);
         line-height: 112%;
 
@@ -217,7 +217,7 @@
 
       .lbl {
         font-size: clamp(0.8rem, 1.5vw, 1.7rem);
-        font-weight: 300;
+        font-weight: 400;
         line-height: 112%;
         letter-spacing: 0.105em;
         color: #b055e1;
@@ -237,14 +237,14 @@
         padding: 0;
         box-sizing: border-box;
         margin-top: 0.7rem;
-        border: clamp(1px, 0.15em, 2px) solid #944cbf;
+        border: clamp(1px, 0.15em, 2px) solid #b055e1;
         border-radius: 100px;
         background-color: #000000;
         box-shadow: 10px 30px 100px 10px #0000006b;
       }
 
       .error {
-        border: clamp(1px, 0.15em, 2px) solid #e43e3e;
+        border: clamp(1px, 0.15em, 2px) solid #cf6678;
       }
 
       .form-email {
@@ -283,7 +283,7 @@
         cursor: pointer;
         padding-inline: 0.8rem;
         width: clamp(2em, 3.7vw, 5em);
-        background: #944cbf;
+        background: #b055e1;
         border-radius: 100px;
 
         @media only screen and (max-width: 500px) {
