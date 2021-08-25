@@ -125,3 +125,6 @@ dist
 .docker
 
 dist/
+
+pg-data/
+redis-data

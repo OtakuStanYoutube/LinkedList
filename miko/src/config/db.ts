@@ -14,7 +14,7 @@ export const connectDB = async () => {
   try {
     const con = await connect(mongoURI, options);
 
-    event(` MongoDB Connected: `.inverse.green + ` ${con.connection.host}`);
+    event(` MongoDB Connected: `.inverse.green + ` ${con}`);
   } catch (error) {
     errors(` ! Error: `.inverse.red.bold + `${error.message}`);
     throw error;
