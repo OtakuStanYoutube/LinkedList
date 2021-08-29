@@ -1,6 +1,6 @@
 <main class="main">
   <nav>
-    <img class="logo-try" src="logo.png" alt="ma ka loda" />
+    <img class="logo-try" src="logo2.png" alt="ma ka loda" />
     <section class="social">
       <a href="https://github.com/OtakuStanYoutube/LinkedList">
         <img src="/icon/github.png" alt="github" />
@@ -31,7 +31,8 @@
 
       .logo-try {
         margin-left: 4em;
-        width: 200px;
+        width: 150px;
+        margin-bottom: 0.2em;
         // height: 24px;
 
         @media only screen and (max-width: 500px) {
