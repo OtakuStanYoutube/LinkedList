@@ -31,8 +31,14 @@ export default class Profile extends BaseModel {
   @Column({ default: ProfileType.UNPUBLISHED, enum: ProfileType })
   visibility: string;
 
-  @Column({ default: false, type: "boolean" })
-  isActive: boolean;
+  @Column({ type: "jsonb", default: {} })
+  social: string;
+
+  @Column({ type: "jsonb", default: {} })
+  customCss: string;
+
+  @Column({ type: "bigint", default: 0 })
+  views: number;
 
   @Column({ default: false, type: "boolean" })
   isVerified: boolean;
