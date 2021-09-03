@@ -39,7 +39,7 @@ export default class Profile extends BaseModel {
   @Column({ default: "https://via.placeholder.com/200/000000/FFFFFF/?text=LL" })
   imgUrl: string;
 
-  @Column({ default: ProfileType.UNPUBLISHED, enum: ProfileType })
+  @Column({ type: "enum", default: ProfileType.UNPUBLISHED, enum: ProfileType })
   visibility: string;
 
   @Column({ type: "simple-array", default: [] })
