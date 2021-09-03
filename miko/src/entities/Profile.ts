@@ -49,7 +49,6 @@ export default class Profile extends BaseModel {
     type: "jsonb",
     array: false,
     default: () => "'[]'",
-    nullable: false,
   })
   @Index()
   intersts: Array<Interest>;
