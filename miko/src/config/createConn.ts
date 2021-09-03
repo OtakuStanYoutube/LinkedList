@@ -1,10 +1,8 @@
-import { join } from "path";
 import { createConnection } from "typeorm";
 import { __prod__ } from "../constants";
-// import User from "../entities/User";
 
-export const createConn = () =>
-  createConnection({
+export const createConn = async () =>
+  await createConnection({
     type: "postgres",
     host: "postgres",
     port: 5432,
@@ -13,7 +11,7 @@ export const createConn = () =>
     database: process.env.DB_DATABASE,
     // url: __prod__ ? process.env.DATABASE_URL : undefined,
     entities: ["dist/entities/*.js"],
-    migrations: [join(__dirname, "./migrations/**/*.js")],
+    migrations: ["dist/migrations/*.js"],
     synchronize: !__prod__,
     logging: !__prod__,
   });
