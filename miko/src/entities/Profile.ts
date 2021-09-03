@@ -5,6 +5,17 @@ import { v4 as uuidv4 } from "uuid";
 import BaseModel from "./BaseModel";
 import { ProfileType } from "../enums/profileType";
 
+type Social = {
+  icon: string;
+  link: string;
+  alt: string;
+};
+
+type Interest = {
+  id: string;
+  name: string;
+};
+
 @Entity("profiles")
 export default class Profile extends BaseModel {
   constructor(profile: Partial<Profile>) {
@@ -31,16 +42,25 @@ export default class Profile extends BaseModel {
   @Column({ default: ProfileType.UNPUBLISHED, enum: ProfileType })
   visibility: string;
 
-  @Column({ type: "jsonb", default: {} })
-  social: string;
+  @Column({ type: "simple-array", default: [] })
+  social: Array<Social>;
 
-  @Column({ type: "jsonb", default: {} })
+  @Column({
+    type: "jsonb",
+    array: false,
+    default: () => "'[]'",
+    nullable: false,
+  })
+  @Index()
+  intersts: Array<Interest>;
+
+  @Column({ type: "text", default: "" })
   customCss: string;
 
   @Column({ type: "bigint", default: 0 })
   views: number;
 
-  @Column({ default: false, type: "boolean" })
+  @Column({ type: "boolean", default: false })
   isVerified: boolean;
 
   @BeforeInsert()
