@@ -38,3 +38,37 @@ export const generateRefreshToken = (id: string) => {
 
   return refreshToken;
 };
+
+export const generateTokens = (id: string, tokenId: string) => {
+  type payload = {
+    id: string;
+    tokenId: string;
+  };
+  const payload: payload = { id, tokenId };
+
+  const accessToken = sign(
+    payload,
+    process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!,
+    {
+      expiresIn: __prod__ ? "1h" : "24h",
+    },
+  );
+
+  const refreshToken = sign(
+    payload,
+    process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!,
+    {
+      expiresIn: __prod__ ? "30d" : "90d",
+    },
+  );
+
+  redisClient.get(id.toString(), (err) => {
+    if (err) {
+      throw new Error(`❗ Error - ${err.message}`);
+    }
+
+    redisClient.set(id.toString(), JSON.stringify({ token: refreshToken }));
+  });
+
+  return { accessToken, refreshToken };
+};
