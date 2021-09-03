@@ -1,8 +1,8 @@
 import { createConnection } from "typeorm";
 import { __prod__ } from "../constants";
 
-export const createConn = async () =>
-  await createConnection({
+export const createConn = () =>
+  createConnection({
     type: "postgres",
     host: "postgres",
     port: 5432,
