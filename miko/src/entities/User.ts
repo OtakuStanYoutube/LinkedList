@@ -1,4 +1,4 @@
-import { Entity, Column, Index, BeforeInsert } from "typeorm";
+import { Entity, Column, Index, BeforeInsert, OneToMany } from "typeorm";
 import { Exclude } from "class-transformer";
 import { IsEmail, Length } from "class-validator";
 import { hash } from "argon2";
@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import BaseModel from "./BaseModel";
 import { UserRole } from "../enums/userRole";
+import Profile from "./Profile";
 
 @Entity("users")
 export default class User extends BaseModel {
@@ -51,6 +52,9 @@ export default class User extends BaseModel {
 
   @Column({ default: false, type: "boolean" })
   isVerified: boolean;
+
+  @OneToMany(() => Profile, (profile) => profile.user)
+  profiles: Profile[];
 
   @BeforeInsert()
   async hashPassword() {
