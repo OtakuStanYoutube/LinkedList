@@ -1,4 +1,4 @@
-import { Entity, Column, Index, BeforeInsert } from "typeorm";
+import { Entity, Column, Index, BeforeInsert, ManyToOne, JoinColumn } from "typeorm";
 import { Length } from "class-validator";
 import { v4 as uuidv4 } from "uuid";
 
@@ -7,6 +7,7 @@ import { ProfileType } from "../enums/profileType";
 import { Shape } from "../enums/Shape";
 import { Layout } from "../enums/Layout";
 import { BackgroungType } from "../enums/backgroundType";
+import User from "./User";
 
 type Social = {
   icon: string;
@@ -33,7 +34,10 @@ export default class Profile extends BaseModel {
   @Column({ type: "text" })
   bio: string;
 
-  @Column({ default: "https://via.placeholder.com/200/000000/FFFFFF/?text=LL", type: "text" })
+  @Column({
+    default: "https://via.placeholder.com/200/000000/FFFFFF/?text=LL",
+    type: "text",
+  })
   imgUrl: string;
 
   @Column({ type: "enum", default: ProfileType.UNPUBLISHED, enum: ProfileType })
@@ -71,6 +75,10 @@ export default class Profile extends BaseModel {
 
   @Column({ type: "boolean", default: false })
   isVerified: boolean;
+
+  @ManyToOne(() => User, (user) => user.profiles, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "creatorId" })
+  user: User;
 
   @BeforeInsert()
   generateProfileId() {
