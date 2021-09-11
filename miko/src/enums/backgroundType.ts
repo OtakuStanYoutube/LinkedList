@@ -1,4 +1,4 @@
 export enum BackgroungType {
-  Image = "image",
-  Color = "color",
+  IMAGE = "image",
+  COLOR = "color",
 }
