@@ -10,10 +10,10 @@ import { ready } from "./lib/logs";
 const PORT: string | number = process.env.PORT || 5000;
 const ENV: string | number = process.env.NODE_ENV || "development";
 
-const main = async () => {
+(async () => {
   connectDB();
   connectRedis();
-  console.log("Creating Database entry in");
+  console.log("Connecting to Postgress.....");
   try {
     const conn = await createConn();
 
@@ -30,6 +30,4 @@ const main = async () => {
         ` Running in ${ENV} mode on port ${PORT}`,
     ),
   );
-};
-
-main();
+})();
