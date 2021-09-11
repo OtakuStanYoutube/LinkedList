@@ -4,18 +4,15 @@ import { v4 as uuidv4 } from "uuid";
 
 import BaseModel from "./BaseModel";
 import { ProfileType } from "../enums/profileType";
+import { Shape } from "../enums/Shape";
+import { Layout } from "../enums/Layout";
+import { BackgroungType } from "../enums/backgroundType";
 
 type Social = {
   icon: string;
   link: string;
   alt: string;
 };
-
-type Interest = {
-  id: string;
-  name: string;
-};
-
 @Entity("profiles")
 export default class Profile extends BaseModel {
   constructor(profile: Partial<Profile>) {
@@ -30,33 +27,46 @@ export default class Profile extends BaseModel {
   @Index()
   @Length(3, 255, { message: "Must be at least 3 characters long" })
   @Column({ unique: true })
-  display: string;
+  displayname: string;
 
   @Length(3, 1000, { message: "Must be at least 3 characters long" })
-  @Column({ type: "linestring" })
+  @Column({ type: "text" })
   bio: string;
 
-  @Column({ default: "https://via.placeholder.com/200/000000/FFFFFF/?text=LL" })
+  @Column({ default: "https://via.placeholder.com/200/000000/FFFFFF/?text=LL", type: "text" })
   imgUrl: string;
 
   @Column({ type: "enum", default: ProfileType.UNPUBLISHED, enum: ProfileType })
   visibility: string;
 
   @Column({ type: "simple-array", default: [] })
-  social: Array<Social>;
+  social: Social[];
 
-  @Column({
-    type: "jsonb",
-    array: false,
-    default: () => "'[]'",
-  })
-  @Index()
-  intersts: Array<Interest>;
+  @Column({ type: "simple-array", default: [] })
+  tabs: string[];
 
   @Column({ type: "text", default: "" })
   customCss: string;
 
-  @Column({ type: "bigint", default: 0 })
+  @Column({ type: "enum", default: Shape.CIRCLE, enum: Shape })
+  avatarShape: string;
+
+  @Column({ type: "enum", default: Layout.LEFT_ALLIGNED, enum: Layout })
+  profileLayout: string;
+
+  @Column({ type: "enum", default: BackgroungType.COLOR, enum: BackgroungType })
+  coverType: string;
+
+  @Column({ type: "boolean", default: true })
+  coverVisible: boolean;
+
+  @Column({ default: "#000000", type: "text" })
+  cover: string;
+
+  @Column({ type: "boolean", default: false })
+  aboutPageVisible: boolean;
+
+  @Column({ type: "numeric", default: 0 })
   views: number;
 
   @Column({ type: "boolean", default: false })
