@@ -1,3 +1,4 @@
+import { isEmpty } from 'class-validator';
 import { emailRegEx, usernameRegEx } from "../constants";
 
 export const validateLoginInput = (email: string, password: string) => {
@@ -10,7 +11,7 @@ export const validateLoginInput = (email: string, password: string) => {
     password: "",
   };
 
-  if (email.trim() === "") {
+  if (isEmpty(email)) {
     errors.email = "Email cannot be empty";
   } else {
     if (!email.match(emailRegEx)) {
@@ -18,7 +19,7 @@ export const validateLoginInput = (email: string, password: string) => {
     }
   }
 
-  if (password.trim() === "") {
+  if (isEmpty(password)) {
     errors.password = "Password cannot be empty";
   }
 
@@ -44,7 +45,7 @@ export const validateRegisterInput = (
     password: "",
   };
 
-  if (email.trim() === "") {
+  if (isEmpty(email)) {
     errors.email = "Email cannot be empty";
   } else {
     if (!email.match(emailRegEx)) {
@@ -52,11 +53,11 @@ export const validateRegisterInput = (
     }
   }
 
-  if (password.trim() === "") {
+  if (isEmpty(password)) {
     errors.password = "Password cannot be empty";
   }
 
-  if (username.trim() === "") {
+  if (isEmpty(username)) {
     errors.username = "username can't be empty";
   } else {
     if (!username.match(usernameRegEx)) {
