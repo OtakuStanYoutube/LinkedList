@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-import { User } from "../models";
+
+import User from "../entities/User";
 import { redisClient } from "../config/redis_connect";
+import { __prod__ } from "../constants";
+
+import { generateTokens } from "../utils/generateToken";
 
 type decoded = {
   id: string;
@@ -9,66 +13,60 @@ type decoded = {
   exp: number;
 };
 
-export const verifyToken = async (
+export const verifyAuthentication = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.cookies.jwt;
-
-  if (!token) {
-    res.status(401).json({ status: false, message: "No Access Token found" });
-    throw new Error("❌ No Token found");
-  }
-
-  try {
-    const decoded = <decoded>(
-      verify(token, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!)
-    );
-
-    redisClient.get(`BL_${decoded.id.toString()}`, (err, data) => {
-      if (err) {
-        throw new Error(err.message);
-      }
-      if (data === token) {
-        res.status(401).json({
-          status: false,
-          message: "❗ Blacklisted Token!",
-        });
-      }
-    });
-
-    const user = await User.findById(decoded.id).select("-password");
-
-    if (user?.tokenId !== decoded.tokenId) {
-      res.status(401).json({
-        status: false,
-        message: "Token already Expired",
-      });
-    }
-
-    req.body.user! = user;
-    next();
-  } catch (error) {
-    res
-      .status(401)
-      .json({ status: false, message: "Not Authorized! Invalid Token" });
-    throw new Error("❌ Not Authorized! Invalid Token");
-  }
-
-  next();
-};
-
-export const verifyRefreshToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+  const accessToken = req.cookies.jwt;
   const refreshToken = req.cookies.jwt_refresh;
 
+  if (!accessToken && !refreshToken) {
+    res
+      .status(401)
+      .json({ status: false, message: "User is not Authenticated" });
+  }
+
+  if (accessToken) {
+    try {
+      const decodedAccessToken = <decoded>(
+        verify(accessToken, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!)
+      );
+
+      redisClient.get(`BL_${decodedAccessToken.id.toString()}`, (err, data) => {
+        if (err) {
+          throw new Error(err.message);
+        }
+        if (data === accessToken) {
+          res.status(401).json({
+            status: false,
+            message: "❗ Blacklisted Token!",
+          });
+        }
+      });
+
+      const user = await User.findOne({ userID: decodedAccessToken.id });
+
+      if (user) {
+        if (user.tokenId !== decodedAccessToken.tokenId) {
+          res.status(401).json({
+            status: false,
+            message: "Token already Expired",
+          });
+        }
+      }
+      req.body.user! = user;
+      next();
+    } catch (error) {
+      console.log(error);
+      throw new Error("❌ Not Authorized! Invalid Token");
+    }
+  }
+
   if (!refreshToken) {
-    res.status(401).json({ status: false, message: "No Refresh Token found" });
-    throw new Error("❌ No Refresh Token found");
+    res
+      .status(401)
+      .json({ status: false, message: "User is not Authenticated" });
   }
 
   try {
@@ -94,11 +92,36 @@ export const verifyRefreshToken = (
       }
     });
 
-    req.body.id = decodedRefreshToken.id;
+    const user = await User.findOne({ userID: decodedRefreshToken.id });
+
+    if (user) {
+      if (user.tokenId !== decodedRefreshToken.tokenId) {
+        res.status(401).json({
+          status: false,
+          message: "Token already Expired",
+        });
+      }
+
+      const tokens = generateTokens(user.userID, user.tokenId);
+
+      res.cookie("jwt", tokens.accessToken, {
+        httpOnly: true,
+        path: "/access_token",
+        secure: __prod__,
+      });
+      res.cookie("jwt_refresh", tokens.refreshToken, {
+        httpOnly: true,
+        path: "/refresh_token",
+        secure: __prod__,
+      });
+    }
+
+    req.body.user! = user;
     next();
   } catch (error) {
-    res.status(401).json({ status: false });
     console.log(error);
     throw new Error("❌ Not Authorized! Invalid Token");
   }
+
+  next();
 };
