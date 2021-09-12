@@ -1,4 +1,4 @@
-export const mapErrors = (errors: []) => {
+export const mapErrors = (errors: Object[]) => {
   return errors.reduce((prev: any, err: any) => {
     const [[, errorProperty]] = Object.entries(err.constraints);
 
