@@ -27,11 +27,11 @@ export default class Profile extends BaseModel {
 
   @Index()
   @Length(3, 255, { message: "Must be at least 3 characters long" })
-  @Column({ unique: true })
+  @Column({ default: "" })
   displayname: string;
 
   @Length(3, 1000, { message: "Must be at least 3 characters long" })
-  @Column({ type: "text" })
+  @Column({ type: "text", default: "" })
   bio: string;
 
   @Column({
@@ -39,6 +39,12 @@ export default class Profile extends BaseModel {
     type: "text",
   })
   imgUrl: string;
+
+  @Column({
+    default: "",
+    type: "text",
+  })
+  profileSlug: string;
 
   @Column({ type: "enum", default: ProfileType.UNPUBLISHED, enum: ProfileType })
   visibility: string;
