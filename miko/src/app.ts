@@ -57,9 +57,9 @@ if (!__prod__) {
   );
 
   app.get("/user", verifyAuthentication, (req: Request, res: Response) => {
-    const { user } = req.body;
+    const { id } = req.body;
 
-    res.status(201).json({ message: "logged in", user });
+    res.status(201).json({ message: "logged in", userId: id });
   });
 }
 
