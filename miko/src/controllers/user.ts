@@ -27,7 +27,7 @@ export const loginUser = async (req: Request, res: Response) => {
   const { errors, valid } = validateLoginInput(email, password);
 
   if (!valid) {
-    res.status(401).json({ errors });
+    return res.status(401).json({ errors });
   }
 
   const user = await User.findOne({ email });
@@ -49,20 +49,25 @@ export const loginUser = async (req: Request, res: Response) => {
 
     res.cookie("jwt", accessToken, {
       httpOnly: true,
-      path: "/access_token",
+      path: "/",
       secure: __prod__,
+      sameSite: __prod__ ? "lax" : false,
+      maxAge: 60,
     });
     res.cookie("jwt_refresh", refreshToken, {
       httpOnly: true,
-      path: "/refresh_token",
+      path: "/",
       secure: __prod__,
+      sameSite: __prod__ ? "lax" : false,
+      maxAge: 60 * 60 * 24 * 200,
     });
-    res.status(201).json({
+
+    return res.status(201).json({
       user,
       accessToken,
+      newTokenId,
     });
   } else {
-    res.status(401);
     throw new Error("❗ Invalid User");
   }
 };
@@ -73,25 +78,26 @@ export const registerUser = async (req: Request, res: Response) => {
   const { errors, valid } = validateRegisterInput(username, email, password);
 
   if (!valid) {
-    res.status(401).json({ errors });
+    return res.status(401).json({ errors });
   }
 
   const userExists = await User.findOne({ email });
-  const usernameExists = await User.findOne({ username });
 
   if (userExists) {
-    res.status(401).json({
+    return res.status(401).json({
       status: false,
       message: "❗ User already exists",
     });
-  }
+  } else {
+    const usernameExists = await User.findOne({ username });
 
-  if (usernameExists) {
-    res.status(401).json({
-      status: false,
-      message: "❗ Username already taken! Please select a new username",
-      generatedUsername: generateUniqueUsername(username),
-    });
+    if (usernameExists) {
+      return res.status(401).json({
+        status: false,
+        message: "❗ Username already taken! Please select a new username",
+        generatedUsername: generateUniqueUsername(username),
+      });
+    }
   }
 
   const user = new User({ username, email, password });
@@ -99,7 +105,7 @@ export const registerUser = async (req: Request, res: Response) => {
   const generatedErrors = await validate(user);
 
   if (generatedErrors.length > 0) {
-    res.status(401).json({
+    return res.status(401).json({
       status: false,
       message: "❗ Invalid User",
       errors: mapErrors(generatedErrors),
@@ -123,7 +129,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     // const info = await mailUser(username, email, activationToken._id);
 
-    res.status(201).json({
+    return res.status(201).json({
       status: true,
       message: "User created Sucessfully",
     });
