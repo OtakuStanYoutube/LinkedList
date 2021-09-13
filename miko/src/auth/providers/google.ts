@@ -1,9 +1,16 @@
 import { Router, Request, Response } from "express";
 import { Strategy } from "passport-google-oauth2";
-import { User, Profile } from "../../models";
 import { PassportStatic } from "passport";
-// import { generateAccessToken } from "../../utils/generateToken";
+
+// Utilities
+import { generateActivationToken } from "../../utils/generateToken";
 import { generateUniqueUsername } from "../../utils/generateUniqueUsername";
+
+// Models
+import User from "../../entities/User";
+import Profile from "../../entities/Profile";
+
+// constants
 // import { __prod__ } from "../../constants";
 
 export default (passport: PassportStatic): Router => {
@@ -18,7 +25,7 @@ export default (passport: PassportStatic): Router => {
         const id = String(profile.id);
         let username = profile.displayName.replace(/ /g, "_");
         const email = String(profile.email);
-        const user = await User.findOne({ oauthId: id });
+        const user = await User.findOne({ oAuthId: id });
 
         if (user) {
           return done(null, user);
@@ -29,22 +36,23 @@ export default (passport: PassportStatic): Router => {
             username = generateUniqueUsername(username);
           }
 
-          const newUser = await User.create({
+          const newUser = new User({
             username,
             email,
-            oauthId: id,
+            oAuthId: id,
             imgUrl: profile._json.picture,
           });
 
+          await newUser.save();
+
           if (newUser) {
-            const newProfile = await Profile.create({
-              parent: newUser._id,
-              handle: newUser.username,
+            const newProfile = new Profile({
+              displayname: username,
               imgUrl: newUser.imgUrl,
+              user,
             });
 
-            newUser.activeProfile = newProfile._id;
-            await newUser.save();
+            await newProfile.save();
 
             return done(null, newUser);
           }
@@ -68,15 +76,10 @@ export default (passport: PassportStatic): Router => {
   router.get(
     "/callback",
     passport.authenticate("google", { failureRedirect: "/auth/login" }),
-    (_req: Request, res: Response) => {
-      // const token = generateAccessToken(req.user!._id);
+    (req: Request, res: Response) => {
+      const token = generateActivationToken(req.user!.userID);
 
-      // res.cookie("jwt", token, {
-      //   httpOnly: true,
-      //   path: "/",
-      //   secure: __prod__,
-      // });
-      res.status(201).redirect("/");
+      res.status(201).redirect(`/activation?token=${token}`);
     },
   );
 
