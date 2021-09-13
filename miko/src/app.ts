@@ -55,8 +55,7 @@ passport.deserializeUser((user: User, done) => {
 });
 
 if (!__prod__) {
-  app.get("/", (req: Request, res: Response) => {
-    console.log(req.cookies);
+  app.get("/", (_req: Request, res: Response) => {
     res.status(201).json({ message: "Hello" });
   });
 
