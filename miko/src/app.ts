@@ -9,6 +9,8 @@ import { notFound, errorHandler } from "./middlewares/error";
 import { verifyAuthentication } from "./middlewares/auth";
 import "colors";
 
+import User from "./entities/User";
+
 // Routes
 import { router as userRoutes } from "./routes/user";
 import authRoutes from "./routes/auth";
@@ -47,15 +49,16 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser((user: any, done) => {
+passport.deserializeUser((user: User, done) => {
   console.log("I got arrested");
   done(null, user);
 });
 
 if (!__prod__) {
-  app.get("/", (_req: Request, res: Response) =>
-    res.status(201).json({ message: "Hello" }),
-  );
+  app.get("/", (req: Request, res: Response) => {
+    console.log(req.cookies);
+    res.status(201).json({ message: "Hello" });
+  });
 
   app.get("/user", verifyAuthentication, (req: Request, res: Response) => {
     const { id } = req.body;

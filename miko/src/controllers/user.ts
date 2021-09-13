@@ -51,7 +51,6 @@ export const loginUser = async (req: Request, res: Response) => {
       path: "/",
       secure: __prod__,
       sameSite: __prod__ ? "lax" : false,
-      maxAge: 60,
     });
     res.cookie("jwt_refresh", refreshToken, {
       httpOnly: true,
