@@ -38,7 +38,7 @@ export const generateTokens = (id: string, tokenId: string) => {
   return { accessToken, refreshToken };
 };
 
-export const generateActivateToken = (userId: string) => {
+export const generateActivationToken = (userId: string) => {
   const activationToken = randomBytes(10).toString("hex");
 
   redisClient.setex(
