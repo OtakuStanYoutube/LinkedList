@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import passport from "passport";
+
 import { __prod__ } from "./constants";
 import { notFound, errorHandler } from "./middlewares/error";
 import { verifyAuthentication } from "./middlewares/auth";
