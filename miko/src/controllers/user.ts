@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { randomBytes } from "crypto";
 import { validate } from "class-validator";
 import { verify } from "argon2";
 
@@ -9,7 +8,7 @@ import User from "../entities/User";
 import Profile from "../entities/Profile";
 
 // Utilities
-import { generateTokens } from "../utils/generateToken";
+import { generateTokens, generateActivationToken } from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
 import { mapErrors } from "../utils/mapErrors";
 // import { mailUser } from "../utils/emailUser";
@@ -119,13 +118,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     await profile.save();
 
-    const activationToken = randomBytes(10).toString("hex");
-
-    redisClient.setex(
-      activationToken.toString(),
-      1200,
-      JSON.stringify({ id: user.userID }),
-    );
+    generateActivationToken(user.userID);
 
     // const info = await mailUser(username, email, activationToken._id);
 
