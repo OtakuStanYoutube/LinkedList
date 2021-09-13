@@ -40,22 +40,11 @@ export const verifyAuthentication = async (
         if (data === accessToken) {
           res.status(401).json({
             status: false,
-            message: "❗ Blacklisted Token!",
+            message: "❗ Token Already Expired!",
           });
         }
       });
-
-      const user = await User.findOne({ userID: decodedAccessToken.id });
-
-      if (user) {
-        if (user.tokenId !== decodedAccessToken.tokenId) {
-          res.status(401).json({
-            status: false,
-            message: "Token already Expired",
-          });
-        }
-      }
-      req.body.user! = user;
+      req.body.id = decodedAccessToken.id;
       next();
     } catch (error) {
       console.log(error);
@@ -114,9 +103,9 @@ export const verifyAuthentication = async (
         path: "/refresh_token",
         secure: __prod__,
       });
-    }
 
-    req.body.user! = user;
+      req.body.id! = user.userID;
+    }
     next();
   } catch (error) {
     console.log(error);
