@@ -1,4 +1,6 @@
 import { sign } from "jsonwebtoken";
+import { randomBytes } from "crypto";
+
 import { redisClient } from "../config/redis_connect";
 import { __prod__ } from "../constants";
 
@@ -34,4 +36,14 @@ export const generateTokens = (id: string, tokenId: string) => {
   });
 
   return { accessToken, refreshToken };
+};
+
+export const generateActivateToken = (userId: string) => {
+  const activationToken = randomBytes(10).toString("hex");
+
+  redisClient.setex(
+    activationToken.toString(),
+    1200,
+    JSON.stringify({ id: userId }),
+  );
 };
