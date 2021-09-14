@@ -8,10 +8,7 @@ import User from "../entities/User";
 import Profile from "../entities/Profile";
 
 // Utilities
-import {
-  generateTokens,
-  generateActivationToken,
-} from "../utils/generateToken";
+import { generateTokens, generateActivationToken } from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
 import { mapErrors } from "../utils/mapErrors";
 // import { mailUser } from "../utils/emailUser";
@@ -48,8 +45,6 @@ export const loginUser = async (req: Request, res: Response) => {
       user.userID,
       newTokenId,
     );
-
-    console.log("🔒 Refresh token Exists from user>>>", refreshToken);
 
     res.cookie("jwt", accessToken, {
       httpOnly: true,
