@@ -5,7 +5,7 @@ import User from "../entities/User";
 import { redisClient } from "../config/redis_connect";
 import { __prod__ } from "../constants";
 
-import { generateTokens } from "../utils/generateToken";
+import { generateAccessToken } from "../utils/generateToken";
 
 type decoded = {
   id: string;
@@ -99,9 +99,7 @@ export const verifyAuthentication = async (
       });
     }
 
-    const tokens = generateTokens(user.userID, user.tokenId);
-
-    console.log(tokens.refreshToken);
+    const tokens = generateAccessToken(user.userID, user.tokenId);
 
     res.cookie("jwt", tokens.accessToken, {
       httpOnly: true,
