@@ -38,6 +38,24 @@ export const generateTokens = (id: string, tokenId: string) => {
   return { accessToken, refreshToken };
 };
 
+export const generateAccessToken = (id: string, tokenId: string) => {
+  type payload = {
+    id: string;
+    tokenId: string;
+  };
+  const payload: payload = { id, tokenId };
+
+  const accessToken = sign(
+    payload,
+    process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!,
+    {
+      expiresIn: __prod__ ? "1h" : "24h",
+    },
+  );
+
+  return accessToken;
+};
+
 export const generateActivationToken = (userId: string) => {
   const activationToken = randomBytes(10).toString("hex");
 
