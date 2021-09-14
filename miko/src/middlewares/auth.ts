@@ -5,7 +5,7 @@ import User from "../entities/User";
 import { redisClient } from "../config/redis_connect";
 import { __prod__ } from "../constants";
 
-import { generateAccessToken } from "../utils/generateToken";
+import { generateTokens } from "../utils/generateToken";
 
 type decoded = {
   id: string;
@@ -22,6 +22,9 @@ export const verifyAuthentication = async (
   const refreshToken = req.cookies.jwt_refresh;
 
   if (!accessToken && !refreshToken) {
+    console.log("Access Token>>>>>", accessToken);
+    console.log("Refresh Token>>>>>", refreshToken);
+
     return res
       .status(401)
       .json({ status: false, message: "User is not Authenticated" });
@@ -48,6 +51,8 @@ export const verifyAuthentication = async (
   } catch {}
 
   if (!refreshToken) {
+    console.log("Refresh Token>>>>>", refreshToken);
+
     return res
       .status(401)
       .json({ status: false, message: "User is not Authenticated" });
@@ -99,7 +104,7 @@ export const verifyAuthentication = async (
       });
     }
 
-    const tokens = generateAccessToken(user.userID, user.tokenId);
+    const tokens = generateTokens(user.userID, user.tokenId);
 
     res.cookie("jwt", tokens.accessToken, {
       httpOnly: true,
@@ -107,6 +112,14 @@ export const verifyAuthentication = async (
       secure: __prod__,
       sameSite: __prod__ ? "lax" : false,
       maxAge: 60 * 60 * 24 * 7,
+    });
+
+    res.cookie("jwt_refresh", refreshToken, {
+      httpOnly: true,
+      path: "/",
+      secure: __prod__,
+      sameSite: __prod__ ? "lax" : false,
+      maxAge: 60 * 60 * 24 * 200,
     });
     req.body.id! = user.userID;
   }
