@@ -22,9 +22,6 @@ export const verifyAuthentication = async (
   const refreshToken = req.cookies.jwt_refresh;
 
   if (!accessToken && !refreshToken) {
-    console.log("Access Token>>>>>", accessToken);
-    console.log("Refresh Token>>>>>", refreshToken);
-
     return res
       .status(401)
       .json({ status: false, message: "User is not Authenticated" });
