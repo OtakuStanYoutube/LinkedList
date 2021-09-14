@@ -22,94 +22,95 @@ export const verifyAuthentication = async (
   const refreshToken = req.cookies.jwt_refresh;
 
   if (!accessToken && !refreshToken) {
-    res
+    return res
       .status(401)
       .json({ status: false, message: "User is not Authenticated" });
   }
-
-  if (accessToken) {
-    try {
-      const decodedAccessToken = <decoded>(
-        verify(accessToken, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!)
-      );
-
-      redisClient.get(`BL_${decodedAccessToken.id.toString()}`, (err, data) => {
-        if (err) {
-          throw new Error(err.message);
-        }
-        if (data === accessToken) {
-          res.status(401).json({
-            status: false,
-            message: "❗ Token Already Expired!",
-          });
-        }
-      });
-      req.body.id = decodedAccessToken.id;
-      next();
-    } catch (error) {
-      console.log(error);
-      throw new Error("❌ Not Authorized! Invalid Token");
-    }
-  }
-
-  if (!refreshToken) {
-    res
-      .status(401)
-      .json({ status: false, message: "User is not Authenticated" });
-  }
-
   try {
-    const decodedRefreshToken = <decoded>(
-      verify(refreshToken, process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!)
+    const decodedAccessToken = <decoded>(
+      verify(accessToken, process.env.LINKEDLIST_ACCESS_TOKEN_SECRET!)
     );
 
-    redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
+    redisClient.get(`BL_${decodedAccessToken.id.toString()}`, (err, data) => {
       if (err) {
-        throw new Error(`❗ Error - ${err.message}`);
+        throw new Error(err.message);
       }
-      if (!data) {
+      if (data === accessToken) {
         res.status(401).json({
           status: false,
-          message: "❗ Invalid Request! Token is not in store",
-        });
-      }
-      if (JSON.parse(data!).token !== refreshToken) {
-        res.status(401).json({
-          status: false,
-          message: "❗ Invalid Request! Token is not in same store",
+          message: "❗ Token Already Expired!",
         });
       }
     });
+    req.body.id = decodedAccessToken.id;
 
-    const user = await User.findOne({ userID: decodedRefreshToken.id });
+    return next();
+  } catch {}
 
-    if (user) {
-      if (user.tokenId !== decodedRefreshToken.tokenId) {
-        res.status(401).json({
-          status: false,
-          message: "Token already Expired",
-        });
-      }
+  if (!refreshToken) {
+    return res
+      .status(401)
+      .json({ status: false, message: "User is not Authenticated" });
+  }
 
-      const tokens = generateTokens(user.userID, user.tokenId);
+  let decodedRefreshToken: decoded = {
+    id: "",
+    tokenId: "",
+    exp: 0,
+  };
 
-      res.cookie("jwt", tokens.accessToken, {
-        httpOnly: true,
-        path: "/access_token",
-        secure: __prod__,
-      });
-      res.cookie("jwt_refresh", tokens.refreshToken, {
-        httpOnly: true,
-        path: "/refresh_token",
-        secure: __prod__,
-      });
-
-      req.body.id! = user.userID;
-    }
-    next();
+  try {
+    decodedRefreshToken = <decoded>(
+      verify(refreshToken, process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!)
+    );
   } catch (error) {
-    console.log(error);
-    throw new Error("❌ Not Authorized! Invalid Token");
+    console.log("error Happened");
+    next();
+    throw new Error("❌ Not Authorized! Invalid Refresh Token");
+  }
+
+  redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
+    if (err) {
+      throw new Error(`❗ Error - ${err.message}`);
+    }
+    if (!data) {
+      res.status(401).json({
+        status: false,
+        message: "❗ Invalid Request! Token is not in store",
+      });
+
+      return next();
+    }
+    if (JSON.parse(data!).token !== refreshToken) {
+      return res.status(401).json({
+        status: false,
+        message: "❗ Invalid Request! Token is not in same store",
+      });
+    }
+  });
+
+  const user = await User.findOne({ userID: decodedRefreshToken.id });
+
+  if (user) {
+    if (user.tokenId !== decodedRefreshToken.tokenId) {
+      return res.status(401).json({
+        status: false,
+        message: "Token already Expired",
+      });
+    }
+
+    const tokens = generateTokens(user.userID, user.tokenId);
+
+    console.log(tokens.refreshToken);
+
+    res.cookie("jwt", tokens.accessToken, {
+      httpOnly: true,
+      path: "/",
+      secure: __prod__,
+      sameSite: __prod__ ? "lax" : false,
+      maxAge: 60 * 60 * 24 * 7,
+    });
+    req.body.id! = user.userID;
   }
 
   next();
