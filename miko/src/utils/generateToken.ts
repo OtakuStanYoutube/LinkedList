@@ -19,20 +19,25 @@ export const generateTokens = (id: string, tokenId: string) => {
     },
   );
 
-  const refreshToken = sign(
-    payload,
-    process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!,
-    {
-      expiresIn: __prod__ ? "30d" : "90d",
-    },
-  );
+  let refreshToken = "";
 
-  redisClient.get(id.toString(), (err) => {
+  redisClient.get(id.toString(), (err, data) => {
     if (err) {
       throw new Error(`❗ Error - ${err.message}`);
     }
 
-    redisClient.set(id.toString(), JSON.stringify({ token: refreshToken }));
+    if (data) {
+      refreshToken = JSON.parse(data).refreshToken;
+    } else {
+      refreshToken = sign(
+        payload,
+        process.env.LINKEDLIST_REFRESH_TOKEN_SECRET!,
+        {
+          expiresIn: __prod__ ? "30d" : "90d",
+        },
+      );
+      redisClient.set(id.toString(), JSON.stringify({ token: refreshToken }));
+    }
   });
 
   return { accessToken, refreshToken };
