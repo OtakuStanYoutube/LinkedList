@@ -53,7 +53,7 @@ export const generateAccessToken = (id: string, tokenId: string) => {
     },
   );
 
-  return accessToken;
+  return { accessToken };
 };
 
 export const generateActivationToken = (userId: string) => {
