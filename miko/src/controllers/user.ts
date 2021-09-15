@@ -8,7 +8,10 @@ import User from "../entities/User";
 import Profile from "../entities/Profile";
 
 // Utilities
-import { generateTokens, generateActivationToken } from "../utils/generateToken";
+import {
+  generateTokens,
+  generateActivationToken,
+} from "../utils/generateToken";
 import { generateUniqueUsername } from "../utils/generateUniqueUsername";
 import { mapErrors } from "../utils/mapErrors";
 // import { mailUser } from "../utils/emailUser";
@@ -127,6 +130,29 @@ export const registerUser = async (req: Request, res: Response) => {
     });
   } else {
     throw new Error("❗ Invalid User!");
+  }
+};
+
+export const logoutUser = async (req: Request, res: Response) => {
+  const { id } = req.body;
+
+  const user = await User.findOne({ userID: id });
+
+  if (user) {
+    user.tokenId = "";
+    await user.save();
+    res.clearCookie("jwt");
+    res.clearCookie("jwt_refresh");
+
+    return res.status(201).json({
+      status: true,
+      message: "User logged out successfully",
+    });
+  } else{
+    return res.status(401).json({
+      status: false,
+      message: "❗ Invalid User",
+    });
   }
 };
 
