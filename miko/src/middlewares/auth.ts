@@ -69,25 +69,25 @@ export const verifyAuthentication = async (
     throw new Error("❌ Not Authorized! Invalid Refresh Token");
   }
 
-  redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
-    if (err) {
-      throw new Error(`❗ Error - ${err.message}`);
-    }
-    if (!data) {
-      res.status(401).json({
-        status: false,
-        message: "❗ Invalid Request! Token is not in store",
-      });
+  // redisClient.get(decodedRefreshToken.id.toString(), (err, data) => {
+  //   if (err) {
+  //     throw new Error(`❗ Error - ${err.message}`);
+  //   }
+  //   if (!data) {
+  //     res.status(401).json({
+  //       status: false,
+  //       message: "❗ Invalid Request! Token is not in store",
+  //     });
 
-      return next();
-    }
-    if (JSON.parse(data!).token !== refreshToken) {
-      return res.status(401).json({
-        status: false,
-        message: "❗ Invalid Request! Token is not in same store",
-      });
-    }
-  });
+  //     return next();
+  //   }
+  //   if (JSON.parse(data!).token !== refreshToken) {
+  //     return res.status(401).json({
+  //       status: false,
+  //       message: "❗ Invalid Request! Token is not in same store",
+  //     });
+  //   }
+  // });
 
   const user = await User.findOne({ userID: decodedRefreshToken.id });
 
