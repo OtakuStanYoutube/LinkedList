@@ -27,6 +27,14 @@ export const generateTokens = (id: string, tokenId: string) => {
     },
   );
 
+  // redisClient.get(id.toString(), (err) => {
+  //   if (err) {
+  //     throw new Error(`❗ Error - ${err.message}`);
+  //   }
+
+  //   redisClient.set(id.toString(), JSON.stringify({ token: refreshToken }));
+  // });
+
   return { accessToken, refreshToken };
 };
 
