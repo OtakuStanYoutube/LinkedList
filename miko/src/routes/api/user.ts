@@ -1,6 +1,13 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-import { loginUser, registerUser, verifyEmail } from "../../controllers/user";
+
+import {
+  loginUser,
+  registerUser,
+  verifyEmail,
+  logoutUser,
+} from "../../controllers/user";
+import { verifyAuthentication } from "../../middlewares/auth";
 
 export const router: Router = Router();
 
@@ -13,6 +20,11 @@ router.post("/login", asyncHandler(loginUser));
 // @route    POST /api/v1/users/register
 // @access   Public
 router.post("/register", asyncHandler(registerUser));
+
+// @desc     Logout curently logged in user
+// @route    POST /api/v1/users/logout
+// @access   Public
+router.post("/logout", verifyAuthentication, asyncHandler(logoutUser));
 
 // @desc     Verify user email
 // @route    POST /api/v1/verifyEmail/:token
