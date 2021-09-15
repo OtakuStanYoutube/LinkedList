@@ -12,7 +12,7 @@ import "colors";
 import User from "./entities/User";
 
 // Routes
-import { router as userRoutes } from "./routes/user";
+import { router as indexRouter } from "./routes";
 import authRoutes from "./routes/auth";
 
 const app: Application = express();
@@ -66,7 +66,7 @@ if (!__prod__) {
   });
 }
 
-app.use("/api/v1/users", userRoutes);
+app.use("/", indexRouter);
 
 app.use("/api/v1/auth", authRoutes(passport));
 
