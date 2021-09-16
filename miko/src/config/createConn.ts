@@ -1,8 +1,8 @@
-import { createConnection } from "typeorm";
+import { createConnection, ConnectionOptions } from "typeorm";
 import { __prod__ } from "../constants";
 
 export const createConn = () => {
-  return createConnection({
+  const connectionOptions: ConnectionOptions = {
     type: "postgres",
     host: "postgres",
     port: 5432,
@@ -14,5 +14,7 @@ export const createConn = () => {
     migrations: ["dist/migrations/*.js"],
     synchronize: !__prod__,
     logging: !__prod__,
-  });
+  };
+
+  return createConnection(connectionOptions);
 };
