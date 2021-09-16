@@ -8,6 +8,8 @@
   "entities": ["dist/entities/*.js"],
   "migrations": ["dist/migrations/*.js"],
   "seeds": ["dist/seeds/*.js"],
+  "logging": true,
+  "synchronize": true,
   "cli": {
     "entitiesDir": "dist/entities",
     "migrationsDir": "dist/migrations"
