@@ -1,8 +1,16 @@
 # LinkedList
-The one stop solution to managing all your social media influence on a single platform.
+
+<a href="#">
+<p align="center">
+<img height=100 src="./assets/images/linkedlist_logo.png"/>
+</p>
+</a>
+<p align="center">
+  <strong>The one stop solution to managing all your social media influence on a single platform.</strong>
+</p>
 
 ## About 
-Ever felt the need for adding more links to your Social Media bio? Ever fely the need for a single platform to showcase all your work? Well, LinkList was made just for that! It gathers all of your social links and proof of work into a single page that is easy to navigate. LinkedList is an open-source alternative to paid, limited tools like [Linktree](https://linktr.ee/).
+Ever felt the need for sharing more than just links on your Social Media bio? Ever felt the need for a single platform to showcase all your work? Well, LinkList was made just for that! It gathers all of your social links and proof of work into a single page that is easy to navigate. LinkedList is an open-source alternative to paid, limited tools like [Linktree](https://linktr.ee/).
 
 ## Why use LinkedList?
 
@@ -23,7 +31,7 @@ While these tools are simple by design, they tend to be a more expensive and les
 * [ ] Private Links
 * [ ] Analytics
 * [ ] Custom Watermark
-
+* [ ] Widgets
 live preview all your changes while you work on them.
 
 ## Structure
@@ -52,6 +60,8 @@ The folders are named after Hololive Characters
 
 [<img src="https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A">](https://nodejs.org/en/)
 
+[<img src="https://img.shields.io/badge/-PostgresQL-00758f?style=for-the-badge&labelColor=black&logo=postgresql&logoColor=00758f" >](https://www.postgresql.org/)
+
 [<img src="https://img.shields.io/badge/-MongoDB-3fa037?style=for-the-badge&labelColor=black&logo=mongodb&logoColor=3fa037">](https://www.mongodb.com/1)
 
 [<img src="https://img.shields.io/badge/redis-CC0000.svg?&style=for-the-badge&labelColor=black&logo=redis&logoColor=white">](https://redis.io/)
@@ -74,11 +84,11 @@ Make sure you have Docker and docker-compose installed on your machine.
 
 #### Steps to start the server
 
-1. Add environment variable `MONGO_URI` in Miko directory.
+1. Add environment file .env in Miko directory with the variables fiven in the .env.example file.
 2. Run the following command in the project directory itself.
 
       ```sh
-      docker-compose up --build
+      docker-compose -f docker-compose.debug.yml up --build
       ```
 
 3. Open <http://localhost:5000> to view it in the browser.
@@ -87,11 +97,11 @@ Make sure you have Docker and docker-compose installed on your machine.
 
 #### Prerequisites
 
-Make sure you have Node and TypeScript installed on your machine.
+Make sure you have Node, Redis and TypeScript installed on your machine.
 
 > **_NOTE:_**
 >
->_The project was made with node version 14.15._
+>_The project was made with node version 14.17._
 
 #### Steps to start the server 
 
@@ -100,25 +110,45 @@ Make sure you have Node and TypeScript installed on your machine.
       `miko/.env` file
 
       ```env
-      NODE_ENV = development
-      PORT = 5000
+      NODE_ENV=development
 
-      MONGO_URI = <URI>
+      MONGO_URI=
 
-      LINKEDLIST_ACCESS_TOKEN_SECRET=accestokensecret
-      LINKEDLIST_REFRESH_TOKEN_SECRET=refreshtokensecret
+      DB_HOST=
+      DB_PORT=
+      DB_USERNAME=
+      DB_PASSWORD=
+      DB_DATABASE=
+
+      REDIS_URI=
+
+
+      LINKEDLIST_ACCESS_TOKEN_SECRET=
+      LINKEDLIST_REFRESH_TOKEN_SECRET=
+
+
+      LINKEDLIST_API_GOOGLE_CLIENT_ID=
+      LINKEDLIST_API_GOOGLE_CLIENT_SECRET=
+      LINKEDLIST_API_GOOGLE_CALLBACK_URL=
+
+      LINKEDLIST_GITHUB_CLIENT_ID=
+      LINKEDLIST_GITHUB_CLIENT_SECRET=
+      LINKEDLIST_GITHUB_CALLBACK_URL=
+
+      MAIL_USER=
+      MAIL_PASSWORD=
       ```
 
 2. To install all the dependencies run the following command in backend directory.
 
       ```sh
-      yarn add .
+      yarn 
       ```
 
 3. Run the following command in to buid the dist directory.
 
       ```sh
-      yarn watch
+      yarn build
       ```
 
 4. Run the following command in to start server.
