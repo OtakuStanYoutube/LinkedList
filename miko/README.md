@@ -1,5 +1,13 @@
 # Linked List
-The one stop solution to managing all your social media influence on a single platform.
+
+<a href="#">
+<p align="center">
+<img height=100 src="../assets/images/linkedlist_logo.png"/>
+</p>
+</a>
+<p align="center">
+  <strong>The one stop solution to managing all your social media influence on a single platform.</strong>
+</p>
 
 ## 📃 About The Folder
 
@@ -31,7 +39,7 @@ Make sure you have Docker and docker-compose installed on your machine.
 
 #### Prerequisites
 
-Make sure you have Node and TypeScript installed on your machine.
+Make sure you have Node, Redis and TypeScript installed on your machine.
 
 > **_NOTE:_**
 >
@@ -39,29 +47,50 @@ Make sure you have Node and TypeScript installed on your machine.
 
 #### Steps to start the server
 
-1. Add environment file.
+1. Add environment files in backend directory.
 
-      `.env` file
+      `miko/.env` file
 
       ```env
       NODE_ENV=development
-      PORT=5000
-      MONGO_URI=<Mongo db connection string>
 
-      LINKEDLIST_ACCESS_TOKEN_SECRET=accestokensecret
-      LINKEDLIST_REFRESH_TOKEN_SECRET=refreshtokensecret
+      MONGO_URI=
+
+      DB_HOST=
+      DB_PORT=
+      DB_USERNAME=
+      DB_PASSWORD=
+      DB_DATABASE=
+
+      REDIS_URI=
+
+
+      LINKEDLIST_ACCESS_TOKEN_SECRET=
+      LINKEDLIST_REFRESH_TOKEN_SECRET=
+
+
+      LINKEDLIST_API_GOOGLE_CLIENT_ID=
+      LINKEDLIST_API_GOOGLE_CLIENT_SECRET=
+      LINKEDLIST_API_GOOGLE_CALLBACK_URL=
+
+      LINKEDLIST_GITHUB_CLIENT_ID=
+      LINKEDLIST_GITHUB_CLIENT_SECRET=
+      LINKEDLIST_GITHUB_CALLBACK_URL=
+
+      MAIL_USER=
+      MAIL_PASSWORD=
       ```
 
-2. To install all the dependencies run the following command.
+2. To install all the dependencies run the following command in backend directory.
 
       ```sh
-      yarn install
+      yarn 
       ```
 
 3. Run the following command in to buid the dist directory.
 
       ```sh
-      yarn watch
+      yarn build
       ```
 
 4. Run the following command in to start server.
@@ -71,6 +100,7 @@ Make sure you have Node and TypeScript installed on your machine.
       ```
 
 5. Your server should be running on port [5000](http://localhost:5000).
+
 
 ## 🔐 License
 
