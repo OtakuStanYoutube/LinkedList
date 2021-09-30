@@ -1,8 +1,12 @@
 {
-  "name": "LinkedList",
+  "name": "linkedlist",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/OtakuStanYoutube/LinkedList.git",
-  "author": "Lunaticsatoshi <deysarkersudeep@gmail.com>",
-  "license": "MIT"
+  "license": "GPL",
+  "private": true,
+  "workspaces": [
+    "ayame",
+    "miko"
+  ]
 }
