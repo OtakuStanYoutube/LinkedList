@@ -1,12 +1,10 @@
-# LinkedList
-
 <a href="#">
 <p align="center">
-<img height=100 src="./assets/images/linkedlist_logo.png"/>
+<img height=80 width=380 src="./assets/images/linkedlist_logo.png"/>
 </p>
 </a>
 <p align="center">
-  <strong>The one stop solution to managing all your social media influence on a single platform.</strong>
+  <strong>A Single Platform For All Your Work.</strong>
 </p>
 
 ## About 
@@ -17,6 +15,8 @@ Ever felt the need for sharing more than just links on your Social Media bio? Ev
 Social Media like Instagram, Twitter, e.t.c neither provides support for multiple clickable links nor a place to show all your work to your audience on post captions or on your bio. To help you overcome this limitation, tools like Linktree were made, providing users the ability to use their one stop URL field to direct viewers to multiple destinations.
 
 While these tools are simple by design, they tend to be a more expensive and less customizable solution than they should. Using Linktree as an example is very limiting like the free version doesn't even provide you with proper theme and UI customization options.
+
+Build your LinkedList profile and showcase your proof of work, experience and online presence to your audience, all at a single place
 
 ## Features
 
