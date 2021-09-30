@@ -7,9 +7,9 @@ import NextLink from "next/link";
 //MUI Components
 // import { Button } from "@material-ui/core";
 
-import Layout from "../components/Layout";
-import { Wrapper } from "../components/Wrapper";
-import InputField from "../components/InputField";
+import Layout from "src/components/Layout";
+import { Wrapper } from "src/components/Wrapper";
+import InputField from "src/components/InputField";
 
 const LoginPage: FC<{}> = ({}) => {
   const router = useRouter();
