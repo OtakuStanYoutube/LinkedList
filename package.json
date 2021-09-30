@@ -4,9 +4,5 @@
   "main": "index.js",
   "repository": "https://github.com/OtakuStanYoutube/LinkedList.git",
   "license": "GPL",
-  "private": true,
-  "workspaces": [
-    "ayame",
-    "miko"
-  ]
+  "private": true
 }
