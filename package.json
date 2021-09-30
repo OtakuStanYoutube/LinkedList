@@ -5,14 +5,11 @@
 	"repository": "https://github.com/OtakuStanYoutube/LinkedList.git",
 	"license": "GPL",
 	"private": true,
-	"workspaces": [
-		"ayame",
-		"miko"
-	],
 	"devDependencies": {
 		"@commitlint/cli": "^13.2.0",
 		"@commitlint/config-conventional": "^13.2.0",
 		"commitlint-config-gitmoji": "^2.2.5",
 		"husky": "^7.0.2"
-	}
+	},
+	"dependencies": {}
 }
