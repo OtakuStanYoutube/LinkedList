@@ -1,9 +1,9 @@
-import { InputHTMLAttributes, FC } from "react";
+import { DetailedHTMLProps, InputHTMLAttributes, FC } from "react";
 import { useField } from "formik";
 
 import { TextField } from "@material-ui/core";
 
-type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+type InputFieldProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   label: string;
   name: string;
   textarea?: boolean;
@@ -14,6 +14,8 @@ const InputField: FC<InputFieldProps> = ({
   textarea,
   size: _,
   color: __,
+  ref: ___,
+  className,
   ...props
 }) => {
   const [field, { error }] = useField(props);
@@ -22,7 +24,7 @@ const InputField: FC<InputFieldProps> = ({
       <TextField
         id={field.name}
         label={field.name}
-        className="border-rounded w-full py-2 px-4 outline-none leading-tight text-gray-700 shadow appearance-none focus:outline-none focus:shadow-outline"
+        className={className}
         {...field}
         {...props}
         error={!!error}
