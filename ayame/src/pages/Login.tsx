@@ -9,6 +9,7 @@ import NextLink from "next/link";
 
 import Layout from "src/components/shared/Layout";
 import { Wrapper } from "src/components/shared/Wrapper";
+import LoginForm from "src/modules/auth/LoginForm";
 import InputField from "src/components/shared/InputField";
 
 const LoginPage: FC<{}> = ({}) => {
@@ -18,7 +19,8 @@ const LoginPage: FC<{}> = ({}) => {
       <div>
         <Layout title="Login">
           <Wrapper>
-            <Formik
+            <LoginForm message="Login" />
+            {/* <Formik
               initialValues={{ email: "", password: "" }}
               onSubmit={async (values, { setErrors }) => {
                 console.log(values);
@@ -47,7 +49,7 @@ const LoginPage: FC<{}> = ({}) => {
                   </button>
                 </Form>
               )}
-            </Formik>
+            </Formik> */}
           </Wrapper>
         </Layout>
       </div>

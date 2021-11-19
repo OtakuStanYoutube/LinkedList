@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { withFormik, FormikProps, Form, Field } from "formik";
+import { withFormik, FormikProps, Form } from "formik";
 
 import InputField from "src/components/shared/InputField";
 
@@ -14,12 +14,10 @@ interface OtherProps {
 }
 
 const validationSchema = Yup.object({
-  email: Yup
-    .string()
+  email: Yup.string()
     .email("Enter a valid email")
     .required("Email is required"),
-  password: Yup
-    .string()
+  password: Yup.string()
     .min(8, "Password should be of minimum 8 characters length")
     .required("Password is required"),
 });
@@ -29,11 +27,26 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   return (
     <Form>
       <h1>{message}</h1>
-      <Field type="email" name="email" component={InputField} />
+      <InputField
+        type="email"
+        name="email"
+        label="Email"
+        className="border-rounded w-full py-2 px-4 outline-none leading-tight text-gray-700 shadow appearance-none focus:outline-none focus:shadow-outline"
+      />
 
-      <Field type="password" name="password" component={InputField}/>
+      <InputField
+        name="password"
+        placeholder="*******"
+        label="Password"
+        type="password"
+        className="border-rounded w-full py-2 px-4 outline-none leading-tight text-gray-700 shadow appearance-none focus:outline-none focus:shadow-outline"
+      />
 
-      <button type="submit" disabled={isSubmitting}>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+      >
         Submit
       </button>
     </Form>
