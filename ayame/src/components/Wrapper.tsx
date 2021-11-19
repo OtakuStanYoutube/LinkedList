@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "styles/Wrapper.module.scss";
+import styles from "src/styles/Wrapper.module.scss";
 
 export type WrapperVariant = "small" | "regular";
 
