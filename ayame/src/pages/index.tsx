@@ -1,6 +1,6 @@
 import Hello from "src/components/Hello";
-import Layout from "src/components/Layout";
-import { Wrapper } from "src/components/Wrapper";
+import Layout from "src/components/shared/Layout";
+import { Wrapper } from "src/components/shared/Wrapper";
 
 export default function Index() {
   return (
