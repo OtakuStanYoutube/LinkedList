@@ -3,18 +3,18 @@ import { FC } from "react";
 //MUI Components
 // import { Button } from "@material-ui/core";
 
-import { LoginForm } from "src/modules";
+import { RegisterForm } from "src/modules";
 import { Wrapper, Layout } from "src/components/shared";
 
-const LoginPage: FC<{}> = ({}) => {
+const RegisterPage: FC<{}> = ({}) => {
   return (
     <>
-      <Layout title="Login">
+      <Layout title="Register">
         <Wrapper>
-          <LoginForm message="Login" />
+          <RegisterForm message="Register" />
         </Wrapper>
       </Layout>
     </>
   );
 };
-export default LoginPage;
+export default RegisterPage;
