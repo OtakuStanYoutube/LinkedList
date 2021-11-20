@@ -1,3 +1,4 @@
 import LoginForm from "./auth/LoginForm";
+import RegisterForm from "./auth/RegisterForm";
 
-export default { LoginForm }
+export { LoginForm, RegisterForm };
